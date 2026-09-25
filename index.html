@@ -1,1 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Taif | رحلة الميثاق الرياضية</title>
+
+<style>
+
+/* =========================
+   الأساس
+========================= */
+
+*{
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Tahoma","Arial",sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,#eee8ff 0,transparent 25%),
+    radial-gradient(circle at 90% 20%,#e6f8ff 0,transparent 25%),
+    #faf9ff;
+  color:#292546;
+}
+
+/* =========================
+   الهيدر
+========================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #eeeaf8;
+  padding:15px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  color:#654bd5;
+}
+
+nav{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+nav button{
+  border:0;
+  background:transparent;
+  padding:10px 13px;
+  border-radius:12px;
+  cursor:pointer;
+  color:#57536d;
+  font-weight:bold;
+}
+
+nav button:hover{
+  background:#eeeaff;
+  color:#604bd0;
+}
+
+/* =========================
+   الصفحات
+========================= */
+
+.page{
+  display:none;
+  max-width:1150px;
+  margin:auto;
+  padding:70px 6%;
+  min-height:75vh;
+}
+
+.page.active{
+  display:block;
+}
+
+/* =========================
+   الرئيسية
+========================= */
+
+.hero{
+  min-height:520px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:45px;
+}
+
+.badge{
+  display:inline-block;
+  background:#ebe6ff;
+  color:#604bd0;
+  padding:9px 16px;
+  border-radius:30px;
+  font-weight:bold;
+}
+
+h1{
+  font-size:58px;
+  line-height:1.15;
+  margin:18px 0;
+}
+
+.gradient-text{
+  background:linear-gradient(90deg,#684dd6,#9a66e9,#3ba7c9);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  font-size:19px;
+  line-height:2;
+  color:#706c82;
+  max-width:620px;
+}
+
+.primary{
+  border:0;
+  background:linear-gradient(135deg,#7055dc,#5740c4);
+  color:white;
+  padding:15px 25px;
+  border-radius:15px;
+  cursor:pointer;
+  font-size:17px;
+  font-weight:bold;
+  box-shadow:0 10px 25px #6752d433;
+  transition:.2s;
+}
+
+.primary:hover{
+  transform:translateY(-3px) scale(1.02);
+}
+
+.secondary{
+  border:2px solid #ddd7f4;
+  background:white;
+  color:#5e4bc3;
+  padding:13px 22px;
+  border-radius:15px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-right:8px;
+}
+
+.hero-buttons{
+  margin-top:25px;
+}
+
+/* =========================
+   الشخصية
+========================= */
+
+.character-card{
+  position:relative;
+  background:white;
+  min-height:390px;
+  border-radius:35px;
+  box-shadow:0 20px 55px #51429a20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.character-card::before{
+  content:"";
+  position:absolute;
+  width:270px;
+  height:270px;
+  background:#eee9ff;
+  border-radius:50%;
+}
+
+.character{
+  position:relative;
+  width:190px;
+  height:250px;
+  z-index:2;
+}
+
+/* شخصية كرتونية بسيطة */
+
+.head{
+  width:115px;
+  height:115px;
+  background:#ffd6bd;
+  border-radius:50%;
+  position:absolute;
+  top:15px;
+  left:38px;
+  border:5px solid #493c74;
+}
+
+.hair{
+  position:absolute;
+  width:120px;
+  height:70px;
+  background:#45375f;
+  border-radius:60px 60px 25px 25px;
+  top:5px;
+  left:35px;
+  z-index:3;
+}
+
+.eye{
+  position:absolute;
+  width:9px;
+  height:13px;
+  background:#29233b;
+  border-radius:50%;
+  top:62px;
+  z-index:4;
+}
+
+.eye.one{left:66px}
+.eye.two{left:112px}
+
+.smile{
+  position:absolute;
+  width:28px;
+  height:13px;
+  border-bottom:4px solid #9a5362;
+  border-radius:50%;
+  top:87px;
+  left:80px;
+  z-index:4;
+}
+
+.body{
+  position:absolute;
+  width:125px;
+  height:120px;
+  background:#7258dc;
+  border-radius:45px 45px 20px 20px;
+  top:125px;
+  left:33px;
+  border:5px solid #493c74;
+}
+
+.star{
+  position:absolute;
+  top:160px;
+  left:77px;
+  color:#fff;
+  font-size:35px;
+  z-index:5;
+}
+
+/* =========================
+   البطاقات
+========================= */
+
+.section-title{
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.section-title h2{
+  font-size:40px;
+  margin:14px 0;
+}
+
+.section-title p{
+  color:#777288;
+  font-size:18px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border:1px solid #eeeaf6;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 12px 30px #3d32750c;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px #3d32751a;
+}
+
+.icon{
+  font-size:40px;
+}
+
+.card h3{
+  font-size:22px;
+}
+
+/* =========================
+   خريطة الرحلة
+========================= */
+
+.journey{
+  position:relative;
+  max-width:850px;
+  margin:auto;
+}
+
+.journey::before{
+  content:"";
+  position:absolute;
+  top:25px;
+  bottom:25px;
+  right:35px;
+  width:5px;
+  background:linear-gradient(#7055dc,#53b8c9);
+  border-radius:10px;
+}
+
+.stop{
+  position:relative;
+  background:white;
+  margin:25px 0;
+  padding:25px 75px 25px 25px;
+  border-radius:22px;
+  box-shadow:0 10px 30px #3d32750e;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.stop:hover{
+  transform:translateX(-5px);
+}
+
+.stop-number{
+  position:absolute;
+  right:13px;
+  top:20px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#7055dc;
+  color:white;
+  display:grid;
+  place-items:center;
+  font-weight:bold;
+  z-index:2;
+}
+
+.stop h3{
+  margin:0 0 7px;
+}
+
+/* =========================
+   الدرس
+========================= */
+
+.lesson{
+  max-width:720px;
+  margin:auto;
+  background:white;
+  border-radius:30px;
+  padding:40px;
+  box-shadow:0 18px 45px #3d327515;
+  text-align:center;
+}
+
+.equation{
+  font-size:38px;
+  font-weight:900;
+  margin:25px 0;
+  color:#4f3cae;
+}
+
+.step{
+  background:#f4f1ff;
+  margin:12px;
+  padding:15px;
+  border-radius:14px;
+  font-size:19px;
+}
+
+.correct{
+  background:#e9fff3;
+  color:#258052;
+  font-weight:bold;
+}
+
+/* =========================
+   التحدي
+========================= */
+
+.quiz{
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:40px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 18px 45px #3d327515;
+}
+
+.answers{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.answer{
+  border:0;
+  background:#eeeaff;
+  color:#5541bb;
+  padding:15px 25px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.answer:hover{
+  background:#ddd5ff;
+}
+
+#feedback{
+  min-height:30px;
+  font-weight:bold;
+  margin-top:20px;
+}
+
+/* =========================
+   الإنجاز
+========================= */
+
+.achievement{
+  max-width:650px;
+  margin:30px auto;
+  background:white;
+  padding:40px;
+  text-align:center;
+  border-radius:30px;
+  box-shadow:0 18px 45px #3d327515;
+}
+
+.trophy{
+  font-size:80px;
+}
+
+.progress{
+  height:14px;
+  background:#eeeaf8;
+  border-radius:20px;
+  overflow:hidden;
+  margin:25px 0;
+}
+
+.progress-bar{
+  width:33%;
+  height:100%;
+  background:linear-gradient(90deg,#7055dc,#54b9c7);
+}
+
+/* =========================
+   الفوتر
+========================= */
+
+footer{
+  background:#292546;
+  color:white;
+  text-align:center;
+  padding:30px;
+}
+
+footer span{
+  color:#bcaeff;
+}
+
+/* =========================
+   الجوال
+========================= */
+
+@media(max-width:800px){
+
+  header{
+    display:block;
+  }
+
+  nav{
+    margin-top:12px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:42px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="logo">
+    🧮 Taif Math Journey
+  </div>
+
+  <nav>
+    <button onclick="showPage('home')">الرئيسية</button>
+    <button onclick="showPage('journey')">رحلتي</button>
+    <button onclick="showPage('lesson')">التعلّم</button>
+    <button onclick="showPage('challenge')">التحدي</button>
+    <button onclick="showPage('achievement')">إنجازاتي</button>
+  </nav>
+
+</header>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home" class="page active">
+
+  <div class="hero">
+
+    <div>
+
+      <span class="badge">
+        ✨ مشروع Taif
+      </span>
+
+      <h1>
+        رحلة
+        <span class="gradient-text">
+          المعادلة الذكية
+        </span>
+      </h1>
+
+      <p>
+        أهلاً بكِ في عالم الميثاق الرياضي!
+        هنا ستتعلمين، وتكتشفين، وتتحدين نفسك
+        في رحلة تفاعلية مليئة بالمغامرات.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="primary" onclick="showPage('journey')">
+          ابدئي الرحلة 🚀
+        </button>
+
+        <button class="secondary" onclick="showPage('lesson')">
+          أريد أن أتعلم 📚
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- الشخصية -->
+
+    <div class="character-card">
+
+      <div class="character">
+
+        <div class="hair"></div>
+
+        <div class="head">
+
+          <div class="eye one"></div>
+          <div class="eye two"></div>
+
+          <div class="smile"></div>
+
+        </div>
+
+        <div class="body"></div>
+
+        <div class="star">
+          ★
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="icon">🧭</div>
+
+      <h3>
+        رحلة الميثاق
+      </h3>
+
+      <p>
+        تنقلي بين محطات مختلفة
+        واكتشفي أسرار الرياضيات.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🧠</div>
+
+      <h3>
+        تعلّمي بذكاء
+      </h3>
+
+      <p>
+        خطوات قصيرة وواضحة
+        تساعدك على فهم المعادلات.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🏆</div>
+
+      <h3>
+        اجمعي الإنجازات
+      </h3>
+
+      <p>
+        أكملي التحديات وافتحي
+        لوحة الإنجازات الخاصة بكِ.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     JOURNEY
+========================= -->
+
+<section id="journey" class="page">
+
+  <div class="section-title">
+
+    <span class="badge">
+      🗺️ خريطة الرحلة
+    </span>
+
+    <h2>
+      مغامرتك تبدأ من هنا
+    </h2>
+
+    <p>
+      اختاري المحطة التي تريدين استكشافها.
+    </p>
+
+  </div>
+
+
+  <div class="journey">
+
+
+    <div class="stop" onclick="showPage('lesson')">
+
+      <div class="stop-number">
+        1
+      </div>
+
+      <h3>
+        📚 بوابة المعرفة
+      </h3>
+
+      <p>
+        تعلّمي ما هي المعادلة وكيف نحلها.
+      </p>
+
+    </div>
+
+
+    <div class="stop" onclick="showPage('lesson')">
+
+      <div class="stop-number">
+        2
+      </div>
+
+      <h3>
+        🔍 محطة الاكتشاف
+      </h3>
+
+      <p>
+        اكتشفي خطوات الوصول إلى قيمة x.
+      </p>
+
+    </div>
+
+
+    <div class="stop" onclick="showPage('challenge')">
+
+      <div class="stop-number">
+        3
+      </div>
+
+      <h3>
+        🎯 ساحة التحدي
+      </h3>
+
+      <p>
+        اختبري مهاراتك في سؤال رياضي.
+      </p>
+
+    </div>
+
+
+    <div class="stop" onclick="showPage('achievement')">
+
+      <div class="stop-number">
+        4
+      </div>
+
+      <h3>
+        🏆 قاعة الإنجازات
+      </h3>
+
+      <p>
+        شاهدي تقدمك وما حققتِه.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON
+========================= -->
+
+<section id="lesson" class="page">
+
+  <div class="section-title">
+
+    <span class="badge">
+      📚 بوابة المعرفة
+    </span>
+
+    <h2>
+      لنحل المعادلة معًا
+    </h2>
+
+    <p>
+      الفكرة بسيطة: نحافظ على توازن طرفي المعادلة.
+    </p>
+
+  </div>
+
+
+  <div class="lesson">
+
+    <div class="equation">
+      x + 7 = 12
+    </div>
+
+    <div class="step">
+      ✏️ نطرح 7 من الطرفين
+    </div>
+
+    <div class="step">
+      x + 7 − 7 = 12 − 7
+    </div>
+
+    <div class="step correct">
+      🎉 إذن x = 5
+    </div>
+
+    <button
+      class="primary"
+      onclick="showPage('challenge')">
+
+      جاهزة للتحدي؟ 🎯
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CHALLENGE
+========================= -->
+
+<section id="challenge" class="page">
+
+  <div class="section-title">
+
+    <span class="badge">
+      🎯 ساحة التحدي
+    </span>
+
+    <h2>
+      أوجدي قيمة x
+    </h2>
+
+    <p>
+      اختاري الإجابة الصحيحة.
+    </p>
+
+  </div>
+
+
+  <div class="quiz">
+
+    <div class="equation">
+      2x + 4 = 14
+    </div>
+
+
+    <div class="answers">
+
+      <button
+        class="answer"
+        onclick="checkAnswer(4)">
+        x = 4
+      </button>
+
+
+      <button
+        class="answer"
+        onclick="checkAnswer(5)">
+        x = 5
+      </button>
+
+
+      <button
+        class="answer"
+        onclick="checkAnswer(7)">
+        x = 7
+      </button>
+
+    </div>
+
+
+    <p id="feedback"></p>
+
+
+    <button
+      class="primary"
+      onclick="showPage('achievement')">
+
+      مشاهدة الإنجاز 🏆
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ACHIEVEMENT
+========================= -->
+
+<section id="achievement" class="page">
+
+  <div class="section-title">
+
+    <span class="badge">
+      🏆 إنجازاتي
+    </span>
+
+    <h2>
+      أحسنتِ يا Taif!
+    </h2>
+
+    <p>
+      كل خطوة صغيرة تقرّبك من إتقان الرياضيات.
+    </p>
+
+  </div>
+
+
+  <div class="achievement">
+
+    <div class="trophy">
+      🏆
+    </div>
+
+    <h2>
+      مستكشفة المعادلات
+    </h2>
+
+    <p>
+      أنجزتِ أول تحدٍ في رحلة الميثاق!
+    </p>
+
+
+    <div class="progress">
+
+      <div
+        class="progress-bar"
+        id="progressBar">
+      </div>
+
+    </div>
+
+
+    <p>
+      تقدم الرحلة: <strong id="progressText">33%</strong>
+    </p>
+
+
+    <button
+      class="primary"
+      onclick="showPage('journey')">
+
+      العودة إلى الرحلة 🗺️
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div>
+    🧮 Taif Math Journey
+  </div>
+
+  <p>
+    مشروع رياضيات تفاعلي
+  </p>
+
+  <span>
+    صُنع بحب بواسطة Taif ✨
+  </span>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   التنقل بين الصفحات
+========================= */
+
+function showPage(pageId){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+      page.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById(pageId)
+    .classList.add("active");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   التحدي
+========================= */
+
+function checkAnswer(answer){
+
+  const feedback =
+    document.getElementById("feedback");
+
+  const progress =
+    document.getElementById("progressBar");
+
+  const progressText =
+    document.getElementById("progressText");
+
+
+  if(answer === 5){
+
+    feedback.innerHTML =
+      "🎉 ممتاز! إجابتك صحيحة. أنتِ مستكشفة رائعة!";
+
+    feedback.style.color =
+      "#258052";
+
+
+    progress.style.width =
+      "66%";
+
+    progressText.textContent =
+      "66%";
+
+  }else{
+
+    feedback.innerHTML =
+      "💡 حاولي مرة أخرى! اطرحي 4 أولاً، ثم اقسمي على 2.";
+
+    feedback.style.color =
+      "#c15a5a";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
