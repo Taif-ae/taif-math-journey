@@ -1,223 +1,392 @@
-<script>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-let score = 0;
-let currentText = "";
-let currentCharacter = "";
+<title>رحلة الأرقام الذكية</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Tahoma, sans-serif;
+  background: linear-gradient(135deg, #eef7ff, #fff8e8);
+  color: #17324d;
+}
+
+header {
+  background: linear-gradient(90deg, #007f73, #009b8a);
+  color: white;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,.15);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.score {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.hero {
+  text-align: center;
+  padding: 35px 20px 20px;
+}
+
+.hero h2 {
+  font-size: 34px;
+  margin: 10px 0;
+}
+
+.hero p {
+  font-size: 19px;
+}
+
+.characters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 20px;
+}
+
+.character {
+  background: white;
+  border-radius: 22px;
+  padding: 22px 12px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.1);
+  transition: .3s;
+  border: 3px solid transparent;
+}
+
+.character:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: #f5b700;
+}
+
+.avatar {
+  font-size: 65px;
+}
+
+.character h3 {
+  margin: 10px 0 5px;
+  font-size: 22px;
+}
+
+.character p {
+  margin: 0;
+  color: #607080;
+}
+
+.speech {
+  max-width: 800px;
+  margin: 10px auto 30px;
+  background: white;
+  border-radius: 20px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 7px 20px rgba(0,0,0,.1);
+  font-size: 20px;
+  min-height: 80px;
+}
+
+.speech-name {
+  color: #007f73;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.challenge {
+  max-width: 700px;
+  margin: 20px auto 50px;
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,.12);
+}
+
+.challenge h2 {
+  margin-top: 0;
+}
+
+.question {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 25px 0;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.answers button {
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+  background: #007f73;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.answers button:hover {
+  transform: scale(1.04);
+  background: #00665c;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  min-height: 30px;
+}
+
+.progress-box {
+  margin-top: 25px;
+}
+
+.progress {
+  height: 18px;
+  background: #e4e4e4;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #f5b700;
+  transition: .5s;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #17324d;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .hero h2 {
+    font-size: 27px;
+  }
+
+  .answers {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔢 رحلة الأرقام الذكية</h1>
+  <div class="score">⭐ النقاط: <span id="score">0</span></div>
+</header>
+
+<section class="hero">
+  <h2>مرحبًا بك في مغامرة الرياضيات!</h2>
+  <p>
+    اختاري شخصية من شخصيات الرحلة، واستمعي لرسالتها، ثم ابدئي التحدي.
+  </p>
+</section>
+
+<section class="characters">
+
+  <div class="character" onclick="talk('hessa')">
+    <div class="avatar">👧🏻</div>
+    <h3>حصة</h3>
+    <p>الهوية الوطنية</p>
+  </div>
+
+  <div class="character" onclick="talk('ahmed')">
+    <div class="avatar">👦🏻</div>
+    <h3>أحمد</h3>
+    <p>المسؤولية</p>
+  </div>
+
+  <div class="character" onclick="talk('maha')">
+    <div class="avatar">👩🏻</div>
+    <h3>مها</h3>
+    <p>البيئة والرفق</p>
+  </div>
+
+  <div class="character" onclick="talk('fahem')">
+    <div class="avatar">🧠</div>
+    <h3>فاهم</h3>
+    <p>التفكير المنطقي</p>
+  </div>
+
+  <div class="character" onclick="talk('shahin')">
+    <div class="avatar">🦅</div>
+    <h3>شاهين</h3>
+    <p>القيادة</p>
+  </div>
+
+</section>
+
+<div class="speech">
+  <div class="speech-name" id="speechName">
+    اختاري شخصية 👆
+  </div>
+
+  <div id="speechText">
+    اضغطي على إحدى الشخصيات لتسمعي رسالتها.
+  </div>
+</div>
+
+<section class="challenge">
+
+  <h2>🧩 التحدي الأول</h2>
+
+  <p>احسبي الناتج:</p>
+
+  <div class="question">
+    2 × 5 + 4 = ؟
+  </div>
+
+  <div class="answers">
+    <button onclick="answer(10)">10</button>
+    <button onclick="answer(12)">12</button>
+    <button onclick="answer(14)">14</button>
+    <button onclick="answer(16)">16</button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <div class="progress-box">
+    <p>تقدم الرحلة</p>
+
+    <div class="progress">
+      <div class="progress-bar" id="progress"></div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  🌟 رحلة الأرقام الذكية — نتعلم، نفكر، ونستمتع بالرياضيات
+</footer>
+
+<script>
 
 const characters = {
 
-  "حصة":
-  "هلا والله! أنا حصة. أحب أتعلم وأعتز بهويتي الإماراتية. يلا نخوض مغامرة الرياضيات ويا بعض!",
+  hessa: {
+    name: "حصة",
+    text: "مرحبا! أنا حصة، ويلا نبدأ مغامرة الأرقام الذكية!"
+  },
 
-  "أحمد":
-  "مرحبا الساع! أنا أحمد. اليوم عندنا تحديات رياضية، وأبغي أشوف شطارتك!",
+  ahmed: {
+    name: "أحمد",
+    text: "مرحبا! أنا أحمد، جاهزين للتحدي؟ خلّونا نشوف منو بيحلها أسرع!"
+  },
 
-  "مها":
-  "هلا! أنا مها. أحب البيئة والرفق، واليوم برحل وياج في مغامرة الأرقام.",
+  maha: {
+    name: "مها",
+    text: "مرحبا! أنا مها، يلا نتعلم ونكتشف الأرقام بطريقة ممتعة!"
+  },
 
-  "فاهم":
-  "هلااا! أنا فاهم، المساعد الذكي. خلينا نفكر عدل قبل لا نختار الإجابة! 🤖",
+  fahem: {
+    name: "فاهم",
+    text: "أنا فاهم! ركّزوا عدل، لأن كل مسألة لها حل ذكي!"
+  },
 
-  "شاهين":
-  "مرحبا! أنا شاهين. خلّنا نبدأ الرحلة ونوصل للهدف مثل القائد الشاطر!"
-};
-
-
-// البحث عن أفضل صوت عربي متوفر
-function getArabicVoice(){
-
-  const voices = speechSynthesis.getVoices();
-
-  // نحاول أولاً إيجاد صوت إماراتي
-  let voice = voices.find(v =>
-    v.lang &&
-    v.lang.toLowerCase() === "ar-ae"
-  );
-
-  // إذا ما حصلناه، نستخدم أي صوت عربي
-  if(!voice){
-
-    voice = voices.find(v =>
-      v.lang &&
-      v.lang.toLowerCase().startsWith("ar")
-    );
-
+  shahin: {
+    name: "شاهين",
+    text: "مرحبا! أنا شاهين، ويلا نقود مغامرتنا ونوصل للهدف!"
   }
 
-  return voice;
+};
+
+let score = 0;
+
+function talk(character) {
+
+  const person = characters[character];
+
+  document.getElementById("speechName").textContent =
+    "🎙️ " + person.name;
+
+  document.getElementById("speechText").textContent =
+    person.text;
+
+  speak(person.text);
 }
 
+function speak(text) {
 
-// تشغيل كلام الشخصية
-function speak(text, name=""){
-
-  if(!("speechSynthesis" in window)){
-    alert("الصوت غير مدعوم في هذا المتصفح.");
+  if (!("speechSynthesis" in window)) {
     return;
   }
 
   speechSynthesis.cancel();
 
-  const speech = new SpeechSynthesisUtterance(text);
+  const voice = new SpeechSynthesisUtterance(text);
 
-  speech.lang = "ar-AE";
+  voice.lang = "ar-AE";
+  voice.rate = 0.9;
+  voice.pitch = 1.05;
+  voice.volume = 1;
 
-  const voice = getArabicVoice();
+  const voices = speechSynthesis.getVoices();
 
-  if(voice){
-    speech.voice = voice;
-  }
-
-  // اختلاف بسيط بين الشخصيات
-  if(name === "فاهم"){
-
-    speech.rate = 0.85;
-    speech.pitch = 1.25;
-
-  }else if(name === "شاهين"){
-
-    speech.rate = 0.9;
-    speech.pitch = 0.9;
-
-  }else{
-
-    speech.rate = 0.92;
-    speech.pitch = 1;
-
-  }
-
-  speech.volume = 1;
-
-  speechSynthesis.speak(speech);
-}
-
-
-// عند الضغط على الشخصية
-function talk(name){
-
-  const box = document.getElementById("talkBox");
-  const nameBox = document.getElementById("talkName");
-  const textBox = document.getElementById("talkText");
-
-  currentCharacter = name;
-  currentText = characters[name];
-
-  nameBox.textContent = name;
-
-  textBox.textContent = currentText;
-
-  box.classList.remove("show");
-
-  setTimeout(() => {
-
-    box.classList.add("show");
-
-    createStars();
-
-    speak(currentText, name);
-
-  },100);
-
-}
-
-
-// إعادة الكلام
-function speakAgain(){
-
-  speak(currentText, currentCharacter);
-
-}
-
-
-// بداية الرحلة
-function startJourney(){
-
-  document.getElementById("characters").scrollIntoView({
-    behavior:"smooth"
-  });
-
-  speak(
-    "هلا والله! حياج في رحلة الأرقام الذكية. اختاري شخصية عشان تتعرفين عليها."
+  const arabicVoice = voices.find(v =>
+    v.lang.toLowerCase().startsWith("ar")
   );
 
+  if (arabicVoice) {
+    voice.voice = arabicVoice;
+  }
+
+  speechSynthesis.speak(voice);
 }
 
+function answer(value) {
 
-// السؤال الرياضي
-function checkAnswer(answer){
+  const message = document.getElementById("message");
 
-  const result = document.getElementById("result");
-
-  if(answer === 14){
+  if (value === 14) {
 
     score += 10;
 
     document.getElementById("score").textContent = score;
 
-    result.textContent =
-      "🎉 كفو! إجابتج صحيحة. فاهم فخور فيج!";
-
-    result.style.color = "#23733b";
-
     document.getElementById("progress").style.width = "100%";
 
-    speak(
-      "كفو عليج! إجابتج صحيحة. حصلتي عشر نقاط.",
-      "فاهم"
-    );
+    message.textContent =
+      "🎉 ممتاز! إجابتج صحيحة! كفو عليج يا بطلة الأرقام!";
 
-    createStars();
+    speak("ممتاز! إجابتج صحيحة! كفو عليج يا بطلة الأرقام!");
 
-  }else{
+  } else {
 
-    result.textContent =
-      "💡 مب مشكلة! حاولي مرة ثانية واحسبي الضرب أول.";
+    message.textContent =
+      "💡 حاولي مرة ثانية! رتبي خطوات العملية أول.";
 
-    result.style.color = "#7b1e25";
-
-    speak(
-      "قريبة! حاولي مرة ثانية واحسبي الضرب أول.",
-      "فاهم"
-    );
+    speak("حاولي مرة ثانية! رتبي خطوات العملية أول.");
 
   }
 
 }
-
-
-// المؤثرات
-function createStars(){
-
-  for(let i=0;i<8;i++){
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    star.textContent = "✨";
-
-    star.style.left =
-      Math.random()*90 + "%";
-
-    star.style.top =
-      50 + Math.random()*30 + "%";
-
-    document.body.appendChild(star);
-
-    setTimeout(()=>{
-      star.remove();
-    },1000);
-
-  }
-
-}
-
-
-// تحميل الأصوات
-speechSynthesis.onvoiceschanged = function(){
-
-  getArabicVoice();
-
-};
 
 </script>
+
+</body>
+</html>
