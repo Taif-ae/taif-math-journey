@@ -1,392 +1,262 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مغامرة الأرقام الذكية</title>
 
-<title>رحلة الأرقام الذكية</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
-* {
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fff4d6, #dff7ff);
+      color: #263238;
+      text-align: center;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, Tahoma, sans-serif;
-  background: linear-gradient(135deg, #eef7ff, #fff8e8);
-  color: #17324d;
-}
+    header {
+      padding: 30px 15px 15px;
+    }
 
-header {
-  background: linear-gradient(90deg, #007f73, #009b8a);
-  color: white;
-  padding: 18px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,.15);
-}
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 30px;
-}
+    .subtitle {
+      font-size: 20px;
+    }
 
-.score {
-  margin-top: 8px;
-  font-size: 18px;
-}
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+    }
 
-.hero {
-  text-align: center;
-  padding: 35px 20px 20px;
-}
+    .character {
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transition: transform 0.2s;
+    }
 
-.hero h2 {
-  font-size: 34px;
-  margin: 10px 0;
-}
+    .character:hover {
+      transform: translateY(-8px) scale(1.03);
+    }
 
-.hero p {
-  font-size: 19px;
-}
+    .character img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      border-radius: 20px;
+    }
 
-.characters {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px;
-  max-width: 1000px;
-  margin: 25px auto;
-  padding: 20px;
-}
+    .character h2 {
+      margin: 12px 0 5px;
+      font-size: 24px;
+    }
 
-.character {
-  background: white;
-  border-radius: 22px;
-  padding: 22px 12px;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,.1);
-  transition: .3s;
-  border: 3px solid transparent;
-}
+    .speech {
+      min-height: 80px;
+      max-width: 700px;
+      margin: 10px auto 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      font-size: 22px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
 
-.character:hover {
-  transform: translateY(-8px) scale(1.03);
-  border-color: #f5b700;
-}
+    .start-btn {
+      border: none;
+      background: #ffb703;
+      color: #222;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+    }
 
-.avatar {
-  font-size: 65px;
-}
+    .start-btn:hover {
+      transform: scale(1.05);
+    }
 
-.character h3 {
-  margin: 10px 0 5px;
-  font-size: 22px;
-}
+    .talking {
+      animation: bounce 0.6s infinite alternate;
+    }
 
-.character p {
-  margin: 0;
-  color: #607080;
-}
+    @keyframes bounce {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-12px);
+      }
+    }
 
-.speech {
-  max-width: 800px;
-  margin: 10px auto 30px;
-  background: white;
-  border-radius: 20px;
-  padding: 22px;
-  text-align: center;
-  box-shadow: 0 7px 20px rgba(0,0,0,.1);
-  font-size: 20px;
-  min-height: 80px;
-}
-
-.speech-name {
-  color: #007f73;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.challenge {
-  max-width: 700px;
-  margin: 20px auto 50px;
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,.12);
-}
-
-.challenge h2 {
-  margin-top: 0;
-}
-
-.question {
-  font-size: 35px;
-  font-weight: bold;
-  margin: 25px 0;
-}
-
-.answers {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.answers button {
-  border: none;
-  padding: 15px;
-  border-radius: 15px;
-  background: #007f73;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.answers button:hover {
-  transform: scale(1.04);
-  background: #00665c;
-}
-
-.message {
-  margin-top: 20px;
-  font-size: 20px;
-  font-weight: bold;
-  min-height: 30px;
-}
-
-.progress-box {
-  margin-top: 25px;
-}
-
-.progress {
-  height: 18px;
-  background: #e4e4e4;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #f5b700;
-  transition: .5s;
-}
-
-footer {
-  text-align: center;
-  padding: 25px;
-  background: #17324d;
-  color: white;
-}
-
-@media (max-width: 600px) {
-  .hero h2 {
-    font-size: 27px;
-  }
-
-  .answers {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      font-size: 15px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🔢 رحلة الأرقام الذكية</h1>
-  <div class="score">⭐ النقاط: <span id="score">0</span></div>
-</header>
-
-<section class="hero">
-  <h2>مرحبًا بك في مغامرة الرياضيات!</h2>
-  <p>
-    اختاري شخصية من شخصيات الرحلة، واستمعي لرسالتها، ثم ابدئي التحدي.
-  </p>
-</section>
-
-<section class="characters">
-
-  <div class="character" onclick="talk('hessa')">
-    <div class="avatar">👧🏻</div>
-    <h3>حصة</h3>
-    <p>الهوية الوطنية</p>
-  </div>
-
-  <div class="character" onclick="talk('ahmed')">
-    <div class="avatar">👦🏻</div>
-    <h3>أحمد</h3>
-    <p>المسؤولية</p>
-  </div>
-
-  <div class="character" onclick="talk('maha')">
-    <div class="avatar">👩🏻</div>
-    <h3>مها</h3>
-    <p>البيئة والرفق</p>
-  </div>
-
-  <div class="character" onclick="talk('fahem')">
-    <div class="avatar">🧠</div>
-    <h3>فاهم</h3>
-    <p>التفكير المنطقي</p>
-  </div>
-
-  <div class="character" onclick="talk('shahin')">
-    <div class="avatar">🦅</div>
-    <h3>شاهين</h3>
-    <p>القيادة</p>
-  </div>
-
-</section>
-
-<div class="speech">
-  <div class="speech-name" id="speechName">
-    اختاري شخصية 👆
-  </div>
-
-  <div id="speechText">
-    اضغطي على إحدى الشخصيات لتسمعي رسالتها.
-  </div>
-</div>
-
-<section class="challenge">
-
-  <h2>🧩 التحدي الأول</h2>
-
-  <p>احسبي الناتج:</p>
-
-  <div class="question">
-    2 × 5 + 4 = ؟
-  </div>
-
-  <div class="answers">
-    <button onclick="answer(10)">10</button>
-    <button onclick="answer(12)">12</button>
-    <button onclick="answer(14)">14</button>
-    <button onclick="answer(16)">16</button>
-  </div>
-
-  <div class="message" id="message"></div>
-
-  <div class="progress-box">
-    <p>تقدم الرحلة</p>
-
-    <div class="progress">
-      <div class="progress-bar" id="progress"></div>
+  <header>
+    <h1>🔢 مغامرة الأرقام الذكية</h1>
+    <div class="subtitle">
+      اختاري شخصيتج وخلّينا نبدأ المغامرة! 🚀
     </div>
+  </header>
+
+  <div class="speech" id="speech">
+    اضغطي على أي شخصية عشان تتكلم 🎙️
   </div>
 
-</section>
+  <section class="characters">
 
-<footer>
-  🌟 رحلة الأرقام الذكية — نتعلم، نفكر، ونستمتع بالرياضيات
-</footer>
+    <div class="character" onclick="talk('hessa', this)">
+      <img src="hessa.png" alt="حصة">
+      <h2>حصة</h2>
+      <p>🌟 الشخصية الذكية</p>
+    </div>
 
-<script>
+    <div class="character" onclick="talk('ahmed', this)">
+      <img src="ahmed.png" alt="أحمد">
+      <h2>أحمد</h2>
+      <p>🧠 يحب التحديات</p>
+    </div>
 
-const characters = {
+    <div class="character" onclick="talk('maha', this)">
+      <img src="maha.png" alt="مها">
+      <h2>مها</h2>
+      <p>📚 تحب التعلم</p>
+    </div>
 
-  hessa: {
-    name: "حصة",
-    text: "مرحبا! أنا حصة، ويلا نبدأ مغامرة الأرقام الذكية!"
-  },
+    <div class="character" onclick="talk('fahem', this)">
+      <img src="fahem.png" alt="فاهم">
+      <h2>فاهم</h2>
+      <p>💡 يعرف الحل</p>
+    </div>
 
-  ahmed: {
-    name: "أحمد",
-    text: "مرحبا! أنا أحمد، جاهزين للتحدي؟ خلّونا نشوف منو بيحلها أسرع!"
-  },
+    <div class="character" onclick="talk('shahin', this)">
+      <img src="shahin.png" alt="شاهين">
+      <h2>شاهين</h2>
+      <p>🦅 قائد المغامرة</p>
+    </div>
 
-  maha: {
-    name: "مها",
-    text: "مرحبا! أنا مها، يلا نتعلم ونكتشف الأرقام بطريقة ممتعة!"
-  },
+  </section>
 
-  fahem: {
-    name: "فاهم",
-    text: "أنا فاهم! ركّزوا عدل، لأن كل مسألة لها حل ذكي!"
-  },
+  <button class="start-btn" onclick="startAdventure()">
+    🚀 ابدأ المغامرة
+  </button>
 
-  shahin: {
-    name: "شاهين",
-    text: "مرحبا! أنا شاهين، ويلا نقود مغامرتنا ونوصل للهدف!"
-  }
+  <footer>
+    © مغامرة الأرقام الذكية
+  </footer>
 
-};
+  <script>
 
-let score = 0;
+    const characters = {
 
-function talk(character) {
+      hessa: {
+        name: "حصة",
+        text: "مرحبا! أنا حصة، ويلا نبدأ مغامرة الأرقام الذكية!"
+      },
 
-  const person = characters[character];
+      ahmed: {
+        name: "أحمد",
+        text: "مرحبا! أنا أحمد، جاهزين للتحدي؟ خلّونا نشوف منو بيحلها أسرع!"
+      },
 
-  document.getElementById("speechName").textContent =
-    "🎙️ " + person.name;
+      maha: {
+        name: "مها",
+        text: "مرحبا! أنا مها، يلا نتعلم ونكتشف الأرقام بطريقة ممتعة!"
+      },
 
-  document.getElementById("speechText").textContent =
-    person.text;
+      fahem: {
+        name: "فاهم",
+        text: "أنا فاهم! ركّزوا عدل، لأن كل مسألة لها حل ذكي!"
+      },
 
-  speak(person.text);
-}
+      shahin: {
+        name: "شاهين",
+        text: "مرحبا! أنا شاهين، ويلا نقود مغامرتنا ونوصل للهدف!"
+      }
 
-function speak(text) {
+    };
 
-  if (!("speechSynthesis" in window)) {
-    return;
-  }
 
-  speechSynthesis.cancel();
+    function talk(characterKey, element) {
 
-  const voice = new SpeechSynthesisUtterance(text);
+      const character = characters[characterKey];
 
-  voice.lang = "ar-AE";
-  voice.rate = 0.9;
-  voice.pitch = 1.05;
-  voice.volume = 1;
+      const speechBox = document.getElementById("speech");
 
-  const voices = speechSynthesis.getVoices();
+      speechBox.textContent =
+        character.name + ": " + character.text;
 
-  const arabicVoice = voices.find(v =>
-    v.lang.toLowerCase().startsWith("ar")
-  );
+      document.querySelectorAll(".character").forEach(card => {
+        card.classList.remove("talking");
+      });
 
-  if (arabicVoice) {
-    voice.voice = arabicVoice;
-  }
+      element.classList.add("talking");
 
-  speechSynthesis.speak(voice);
-}
+      // إيقاف أي كلام سابق
+      window.speechSynthesis.cancel();
 
-function answer(value) {
+      // إنشاء الصوت
+      const speech = new SpeechSynthesisUtterance(
+        character.text
+      );
 
-  const message = document.getElementById("message");
+      speech.lang = "ar-AE";
+      speech.rate = 0.9;
+      speech.pitch = 1.1;
+      speech.volume = 1;
 
-  if (value === 14) {
+      speech.onend = function() {
+        element.classList.remove("talking");
+      };
 
-    score += 10;
+      window.speechSynthesis.speak(speech);
+    }
 
-    document.getElementById("score").textContent = score;
 
-    document.getElementById("progress").style.width = "100%";
+    function startAdventure() {
 
-    message.textContent =
-      "🎉 ممتاز! إجابتج صحيحة! كفو عليج يا بطلة الأرقام!";
+      const speechBox = document.getElementById("speech");
 
-    speak("ممتاز! إجابتج صحيحة! كفو عليج يا بطلة الأرقام!");
+      speechBox.textContent =
+        "🎉 يلا! اختاري شخصية عشان نبدأ المغامرة!";
 
-  } else {
+      window.speechSynthesis.cancel();
 
-    message.textContent =
-      "💡 حاولي مرة ثانية! رتبي خطوات العملية أول.";
+      const speech = new SpeechSynthesisUtterance(
+        "يلا! اختاري شخصية عشان نبدأ المغامرة!"
+      );
 
-    speak("حاولي مرة ثانية! رتبي خطوات العملية أول.");
+      speech.lang = "ar-AE";
+      speech.rate = 0.9;
+      speech.pitch = 1.1;
 
-  }
+      window.speechSynthesis.speak(speech);
+    }
 
-}
-
-</script>
+  </script>
 
 </body>
 </html>
