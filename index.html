@@ -3,422 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>المعادلة المفقودة | رحلة الميثاق</title>
+<title>رحلة الأرقام الذكية 🇦🇪</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
-  font-family:"Cairo",sans-serif;
+  font-family:Tahoma,Arial,sans-serif;
   background:
-    radial-gradient(circle at 20% 20%,rgba(212,175,55,.15),transparent 25%),
-    radial-gradient(circle at 80% 70%,rgba(139,30,32,.22),transparent 30%),
-    #07111f;
-  color:white;
+    radial-gradient(circle at top,#fff8e8 0%,#f5ead8 35%,#102b3f 100%);
+  color:#182b39;
+  min-height:100vh;
   overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(120deg,transparent 45%,rgba(255,255,255,.025) 50%,transparent 55%);
-  background-size:300% 300%;
-  animation:shine 9s infinite linear;
-  z-index:-1;
-}
-
-@keyframes shine{
-  0%{background-position:0 0}
-  100%{background-position:300% 300%}
 }
 
 header{
   position:sticky;
   top:0;
-  z-index:1000;
-  padding:15px 6%;
+  z-index:50;
+  padding:15px 25px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(5,13,25,.82);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.1);
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
 }
 
 .logo{
-  font-size:22px;
-  font-weight:900;
-  color:#f1cf65;
+  font-size:20px;
+  font-weight:bold;
 }
 
-nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-nav a{
+.score{
+  background:#7b1e25;
   color:white;
-  text-decoration:none;
-  padding:8px 14px;
+  padding:10px 18px;
   border-radius:30px;
-  transition:.3s;
-}
-
-nav a:hover{
-  background:#8b1e20;
-  transform:translateY(-2px);
+  font-weight:bold;
 }
 
 .hero{
-  min-height:90vh;
+  min-height:80vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
+  padding:50px 20px;
   position:relative;
-  padding:70px 20px;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:rgba(255,255,255,.2);
+  border-radius:50%;
+  filter:blur(5px);
+  animation:float 5s infinite alternate;
 }
 
 .hero-content{
-  max-width:1000px;
-}
-
-.badge{
-  display:inline-block;
-  padding:8px 18px;
-  border:1px solid #d4af37;
-  border-radius:30px;
-  color:#f1cf65;
-  margin-bottom:20px;
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  50%{box-shadow:0 0 30px rgba(212,175,55,.25)}
-}
-
-.hero h1{
-  font-size:clamp(48px,9vw,100px);
-  line-height:1;
-  font-weight:900;
-  background:linear-gradient(90deg,#fff,#f1cf65,#fff);
-  -webkit-background-clip:text;
-  color:transparent;
-  animation:titleIn 1.2s ease;
-}
-
-@keyframes titleIn{
-  from{opacity:0;transform:translateY(40px) scale(.9)}
-  to{opacity:1;transform:none}
-}
-
-.hero p{
-  font-size:20px;
-  color:#cbd5e1;
-  margin:25px auto;
-  max-width:700px;
-}
-
-.start-btn{
-  border:none;
-  background:linear-gradient(135deg,#8b1e20,#b92b30);
-  color:white;
-  padding:16px 35px;
-  border-radius:50px;
-  font-family:inherit;
-  font-size:18px;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 15px 40px rgba(139,30,32,.35);
-  transition:.3s;
-}
-
-.start-btn:hover{
-  transform:scale(1.06);
-}
-
-.star{
-  position:absolute;
-  color:#f1cf65;
-  animation:float 4s ease-in-out infinite;
-}
-
-.star:nth-child(1){top:20%;left:15%}
-.star:nth-child(2){top:30%;right:12%;animation-delay:1s}
-.star:nth-child(3){bottom:20%;left:25%;animation-delay:2s}
-.star:nth-child(4){bottom:30%;right:25%;animation-delay:3s}
-
-@keyframes float{
-  50%{transform:translateY(-25px) rotate(20deg)}
-}
-
-.ai-video{
-  width:min(900px,92%);
-  height:500px;
-  margin:30px auto 100px;
-  border-radius:35px;
-  overflow:hidden;
   position:relative;
-  background:
-    radial-gradient(circle at 50% 45%,rgba(212,175,55,.25),transparent 25%),
-    linear-gradient(135deg,#07111f,#111d33,#421518);
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 30px 100px rgba(0,0,0,.45);
-}
-
-.ai-video::before{
-  content:"";
-  position:absolute;
-  inset:-50%;
-  background:conic-gradient(transparent,#d4af37,transparent,#8b1e20,transparent);
-  animation:rotate 8s linear infinite;
-  opacity:.25;
-}
-
-@keyframes rotate{
-  to{transform:rotate(360deg)}
-}
-
-.ai-content{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
   z-index:2;
 }
 
-.ai-orb{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:radial-gradient(circle,#fff,#f1cf65 25%,#8b1e20 55%,transparent 70%);
-  animation:orb 2s infinite;
+.flag{
+  font-size:45px;
+  animation:wave 2s infinite;
 }
 
-@keyframes orb{
-  50%{transform:scale(1.25);filter:blur(2px)}
+h1{
+  font-size:clamp(38px,7vw,75px);
+  margin:15px 0;
+  color:#7b1e25;
+  text-shadow:3px 3px 0 rgba(255,255,255,.7);
 }
 
-.ai-text{
-  margin-top:25px;
-  font-size:28px;
-  font-weight:900;
+.subtitle{
+  font-size:22px;
+  margin-bottom:30px;
 }
 
-.ai-sub{
-  color:#cbd5e1;
-  margin-top:8px;
+.start-btn{
+  border:0;
+  background:#102b3f;
+  color:white;
+  padding:15px 30px;
+  border-radius:40px;
+  font-size:18px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+.start-btn:hover{
+  transform:scale(1.08);
 }
 
 section{
-  padding:100px 7%;
+  padding:70px 20px;
+  max-width:1200px;
+  margin:auto;
 }
 
 .section-title{
   text-align:center;
-  margin-bottom:55px;
-}
-
-.section-title h2{
-  font-size:42px;
-  color:#f1cf65;
-}
-
-.section-title p{
-  color:#aab7ca;
-  margin-top:10px;
-}
-
-.story{
-  max-width:1000px;
-  margin:auto;
-  text-align:center;
-  font-size:19px;
-  line-height:2;
-  color:#dce4ef;
-}
-
-.story strong{
-  color:#f1cf65;
+  font-size:35px;
+  margin-bottom:40px;
+  color:#7b1e25;
 }
 
 .characters{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:25px;
-  max-width:1100px;
-  margin:auto;
+  gap:22px;
 }
 
 .character{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.9);
   border-radius:25px;
-  padding:20px;
+  padding:25px 15px;
   text-align:center;
-  transition:.4s;
-  overflow:hidden;
+  cursor:pointer;
+  transition:.35s;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  border:3px solid transparent;
 }
 
 .character:hover{
   transform:translateY(-12px) rotate(-1deg);
-  border-color:#d4af37;
-  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  border-color:#d5a33a;
 }
 
-.character-img{
-  height:220px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:radial-gradient(circle,rgba(212,175,55,.12),transparent 60%);
-  border-radius:20px;
-  overflow:hidden;
-  margin-bottom:15px;
-  font-size:100px;
-}
-
-.character-img img{
-  width:100%;
-  height:100%;
+.character img{
+  width:130px;
+  height:130px;
   object-fit:contain;
-  transition:.5s;
-}
-
-.character:hover img{
-  transform:scale(1.08);
-}
-
-.character h3{
-  color:#f1cf65;
-  font-size:24px;
-}
-
-.character p{
-  color:#b7c3d4;
-  margin-top:5px;
-}
-
-.map{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:15px;
-}
-
-.station{
-  min-height:190px;
-  padding:20px;
-  border-radius:25px;
-  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
-  border:1px solid rgba(255,255,255,.1);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  cursor:pointer;
-  transition:.4s;
-}
-
-.station:hover{
-  transform:translateY(-10px);
-  background:linear-gradient(145deg,#8b1e20,#4b1012);
-}
-
-.station .number{
-  width:45px;
-  height:45px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:#d4af37;
-  color:#151515;
-  font-weight:900;
   margin-bottom:12px;
 }
 
-.station h3{
-  color:#fff;
+.character .emoji{
+  font-size:90px;
+  height:130px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.station small{
-  color:#bdc8d7;
+.character h3{
+  font-size:22px;
+  margin-bottom:8px;
 }
 
-.challenge-box{
-  max-width:800px;
-  margin:auto;
-  padding:45px;
+.character p{
+  color:#666;
+}
+
+.talk-box{
+  margin-top:35px;
+  background:white;
+  border-radius:25px;
+  padding:25px;
+  min-height:120px;
+  display:none;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  border-right:8px solid #7b1e25;
+  animation:appear .4s ease;
+}
+
+.talk-box.show{
+  display:block;
+}
+
+.talk-name{
+  font-size:24px;
+  font-weight:bold;
+  color:#7b1e25;
+  margin-bottom:10px;
+}
+
+.talk-text{
+  font-size:19px;
+  line-height:1.8;
+}
+
+.speak-btn{
+  margin-top:15px;
+  border:0;
+  background:#d5a33a;
+  color:#182b39;
+  padding:10px 18px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.challenge{
+  background:rgba(255,255,255,.93);
   border-radius:30px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(212,175,55,.25);
+  padding:35px;
   text-align:center;
-  box-shadow:0 25px 80px rgba(0,0,0,.25);
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
-.equation{
-  font-size:45px;
-  color:#f1cf65;
-  font-weight:900;
-  margin:25px;
+.question{
+  font-size:32px;
+  margin:25px 0;
+  direction:rtl;
+}
+
+.answers{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
 .answer{
-  width:220px;
-  padding:14px;
-  border:none;
-  border-radius:15px;
-  text-align:center;
-  font-size:20px;
-  font-family:inherit;
-  outline:none;
+  padding:14px 30px;
+  border:0;
+  border-radius:25px;
+  background:#102b3f;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  transition:.25s;
 }
 
-.check-btn{
-  margin-top:15px;
-  padding:13px 28px;
-  border:none;
-  border-radius:15px;
-  background:#d4af37;
-  color:#171717;
-  font-weight:900;
-  cursor:pointer;
-  font-family:inherit;
+.answer:hover{
+  transform:scale(1.08);
 }
 
 .result{
-  margin-top:20px;
+  margin-top:25px;
+  font-size:21px;
+  font-weight:bold;
   min-height:30px;
-  font-weight:800;
 }
 
 .progress-wrap{
-  max-width:700px;
-  margin:40px auto;
-}
-
-.progress-bar{
-  height:20px;
-  background:rgba(255,255,255,.1);
+  margin-top:30px;
+  background:#ddd;
+  height:18px;
   border-radius:20px;
   overflow:hidden;
 }
@@ -426,100 +258,66 @@ section{
 .progress{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#8b1e20,#d4af37);
-  transition:1s;
+  background:#7b1e25;
+  transition:.5s;
 }
 
 footer{
-  padding:50px 20px;
   text-align:center;
-  border-top:1px solid rgba(255,255,255,.1);
-  color:#9eacbd;
+  padding:40px 20px;
+  color:white;
+  background:#102b3f;
 }
 
-.modal{
+.star{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.8);
-  backdrop-filter:blur(12px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:3000;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  max-width:700px;
-  width:100%;
-  background:#0b1729;
-  border:1px solid #d4af37;
-  border-radius:30px;
-  padding:40px;
-  text-align:center;
-  animation:modalIn .5s ease;
-}
-
-@keyframes modalIn{
-  from{transform:scale(.7);opacity:0}
-  to{transform:none;opacity:1}
-}
-
-.close{
-  position:absolute;
-  top:25px;
-  right:30px;
-  font-size:30px;
-  cursor:pointer;
-}
-
-.particle{
-  position:fixed;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#f1cf65;
   pointer-events:none;
-  animation:particleMove 2s ease-out forwards;
-  z-index:5000;
+  font-size:20px;
+  animation:starFall 1s forwards;
 }
 
-@keyframes particleMove{
+@keyframes float{
+  from{transform:translateY(-15px)}
+  to{transform:translateY(20px)}
+}
+
+@keyframes wave{
+  0%,100%{transform:rotate(-5deg)}
+  50%{transform:rotate(5deg)}
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes starFall{
+  from{
+    transform:translateY(0) scale(1);
+    opacity:1;
+  }
   to{
-    transform:translate(var(--x),var(--y));
+    transform:translateY(-100px) scale(1.8);
     opacity:0;
   }
 }
 
-@media(max-width:800px){
-  .map{
-    grid-template-columns:1fr 1fr;
+@media(max-width:600px){
+  header{
+    padding:12px;
   }
 
-  .ai-video{
-    height:400px;
+  .logo{
+    font-size:15px;
   }
 
-  nav{
-    display:none;
-  }
-}
-
-@media(max-width:500px){
-  .map{
-    grid-template-columns:1fr;
+  .score{
+    font-size:13px;
+    padding:8px 12px;
   }
 
-  .hero h1{
-    font-size:55px;
-  }
-
-  .challenge-box{
-    padding:25px;
+  .subtitle{
+    font-size:17px;
   }
 }
 </style>
@@ -528,97 +326,25 @@ footer{
 <body>
 
 <header>
-  <div class="logo">✦ الميثاق ✦</div>
-
-  <nav>
-    <a href="#story">القصة</a>
-    <a href="#characters">الأبطال</a>
-    <a href="#map">الخريطة</a>
-    <a href="#challenge">التحدي</a>
-  </nav>
+  <div class="logo">🧩 رحلة الأرقام الذكية</div>
+  <div class="score">⭐ النقاط: <span id="score">0</span></div>
 </header>
 
 <section class="hero">
 
-  <span class="star">✦</span>
-  <span class="star">✧</span>
-  <span class="star">✦</span>
-  <span class="star">✧</span>
-
   <div class="hero-content">
 
-    <div class="badge">
-      رحلة تفاعلية في عالم الميثاق
-    </div>
+    <div class="flag">🇦🇪</div>
 
-    <h1>المعادلة<br>المفقودة</h1>
+    <h1>رحلة الأرقام الذكية</h1>
 
-    <p>
-      خمسة أبطال، خمس محطات، ومعادلة واحدة تنتظر من يكتشف سرها.
+    <p class="subtitle">
+      مغامرة رياضية تفاعلية مع أبطالنا
     </p>
 
     <button class="start-btn" onclick="startJourney()">
-      ابدأ الرحلة ✦
+      🚀 ابدأ الرحلة
     </button>
-
-  </div>
-</section>
-
-<section id="video">
-
-  <div class="section-title">
-    <h2>🎬 افتتاحية الذكاء الاصطناعي</h2>
-    <p>مشهد افتتاحي متحرك داخل الموقع</p>
-  </div>
-
-  <div class="ai-video">
-
-    <div class="ai-content">
-
-      <div class="ai-orb"></div>
-
-      <div class="ai-text" id="aiText">
-        جاري تشغيل الرحلة...
-      </div>
-
-      <div class="ai-sub" id="aiSub">
-        بالميثاق نبلغ الآفاق
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section id="story">
-
-  <div class="section-title">
-    <h2>📖 القصة</h2>
-    <p>البداية...</p>
-  </div>
-
-  <div class="story">
-
-    <p>
-      في صباحٍ مختلف، اكتشف الطلبة أن هناك
-      <strong>معادلة مفقودة</strong>
-      لا يمكن حلها إلا بجمع خمس قيم.
-    </p>
-
-    <br>
-
-    <p>
-      تبدأ الرحلة مع أبطال الميثاق:
-      <strong>حصة، أحمد، مها، فاهم، وشاهين.</strong>
-    </p>
-
-    <br>
-
-    <p>
-      كل بطل يملك محطة، وكل محطة تحتوي على تحدٍ.
-      هل تستطيعون جمع الأختام الخمسة والوصول إلى المعادلة؟
-    </p>
 
   </div>
 
@@ -626,125 +352,53 @@ footer{
 
 <section id="characters">
 
-  <div class="section-title">
-    <h2>⭐ أبطال الميثاق</h2>
-    <p>اضغطي على أي شخصية لاكتشاف دورها</p>
-  </div>
+  <h2 class="section-title">
+    👋 تعرّفي على أبطال الرحلة
+  </h2>
 
   <div class="characters">
 
-    <div class="character" onclick="characterInfo('حصة')">
-
-      <div class="character-img">
-        <img src="images/hessa.png"
-             alt="حصة"
-             onerror="this.style.display='none';this.parentElement.innerHTML='👧';">
-      </div>
-
+    <div class="character" onclick="talk('حصة')">
+      <div class="emoji">👧</div>
       <h3>حصة</h3>
       <p>الهوية الوطنية</p>
-
     </div>
 
-    <div class="character" onclick="characterInfo('أحمد')">
-
-      <div class="character-img">
-        <img src="images/ahmed.png"
-             alt="أحمد"
-             onerror="this.style.display='none';this.parentElement.innerHTML='👦';">
-      </div>
-
+    <div class="character" onclick="talk('أحمد')">
+      <div class="emoji">👦</div>
       <h3>أحمد</h3>
       <p>المسؤولية</p>
-
     </div>
 
-    <div class="character" onclick="characterInfo('مها')">
-
-      <div class="character-img">
-        <img src="images/maha.png"
-             alt="مها"
-             onerror="this.style.display='none';this.parentElement.innerHTML='🦌';">
-      </div>
-
+    <div class="character" onclick="talk('مها')">
+      <div class="emoji">🦌</div>
       <h3>مها</h3>
       <p>البيئة والرفق</p>
-
     </div>
 
-    <div class="character" onclick="characterInfo('فاهم')">
-
-      <div class="character-img">
-        <img src="images/fahem.png"
-             alt="فاهم"
-             onerror="this.style.display='none';this.parentElement.innerHTML='🤖';">
-      </div>
-
+    <div class="character" onclick="talk('فاهم')">
+      <div class="emoji">🤖</div>
       <h3>فاهم</h3>
       <p>التفكير المنطقي</p>
-
     </div>
 
-    <div class="character" onclick="characterInfo('شاهين')">
-
-      <div class="character-img">
-        <img src="images/shahin.png"
-             alt="شاهين"
-             onerror="this.style.display='none';this.parentElement.innerHTML='🦅';">
-      </div>
-
+    <div class="character" onclick="talk('شاهين')">
+      <div class="emoji">🦅</div>
       <h3>شاهين</h3>
       <p>القيادة</p>
-
     </div>
 
   </div>
 
-</section>
+  <div id="talkBox" class="talk-box">
 
-<section id="map">
+    <div id="talkName" class="talk-name"></div>
 
-  <div class="section-title">
+    <div id="talkText" class="talk-text"></div>
 
-    <h2>🗺️ خريطة الرحلة</h2>
-
-    <p>
-      خمس محطات للوصول إلى المعادلة المفقودة
-    </p>
-
-  </div>
-
-  <div class="map">
-
-    <div class="station" onclick="station(1)">
-      <div class="number">1</div>
-      <h3>محطة حصة</h3>
-      <small>الهوية الوطنية</small>
-    </div>
-
-    <div class="station" onclick="station(2)">
-      <div class="number">2</div>
-      <h3>محطة فاهم</h3>
-      <small>التفكير المنطقي</small>
-    </div>
-
-    <div class="station" onclick="station(3)">
-      <div class="number">3</div>
-      <h3>محطة مها</h3>
-      <small>البيئة والرفق</small>
-    </div>
-
-    <div class="station" onclick="station(4)">
-      <div class="number">4</div>
-      <h3>محطة أحمد</h3>
-      <small>المسؤولية</small>
-    </div>
-
-    <div class="station" onclick="station(5)">
-      <div class="number">5</div>
-      <h3>محطة شاهين</h3>
-      <small>القيادة</small>
-    </div>
+    <button class="speak-btn" onclick="speakAgain()">
+      🔊 اسمعني مرة ثانية
+    </button>
 
   </div>
 
@@ -752,59 +406,40 @@ footer{
 
 <section id="challenge">
 
-  <div class="section-title">
+  <h2 class="section-title">
+    🧠 أول تحدي رياضي
+  </h2>
 
-    <h2>🧠 التحدي الأخير</h2>
+  <div class="challenge">
 
     <p>
-      حلّي المعادلة واكتشفي الرقم السري
+      فاهم جهّز لك أول سؤال!
     </p>
 
-  </div>
-
-  <div class="challenge-box">
-
-    <h3>
-      فاهم يحتاج مساعدتك!
-    </h3>
-
-    <div class="equation">
-      2س + 4 = 14
+    <div class="question">
+      2 × 5 + 4 = ؟
     </div>
 
-    <p>
-      كم تساوي س؟
-    </p>
+    <div class="answers">
 
-    <br>
+      <button class="answer" onclick="checkAnswer(12)">
+        12
+      </button>
 
-    <input
-      class="answer"
-      id="answer"
-      type="number"
-      placeholder="اكتبي الإجابة"
-    >
+      <button class="answer" onclick="checkAnswer(14)">
+        14
+      </button>
 
-    <br>
+      <button class="answer" onclick="checkAnswer(10)">
+        10
+      </button>
 
-    <button class="check-btn" onclick="checkAnswer()">
-      تحقق من الإجابة
-    </button>
+    </div>
 
-    <div class="result" id="result"></div>
+    <div id="result" class="result"></div>
 
-  </div>
-
-  <div class="progress-wrap">
-
-    <p style="text-align:center;margin-bottom:10px;">
-      تقدم الرحلة
-    </p>
-
-    <div class="progress-bar">
-
-      <div class="progress" id="progress"></div>
-
+    <div class="progress-wrap">
+      <div id="progress" class="progress"></div>
     </div>
 
   </div>
@@ -813,54 +448,34 @@ footer{
 
 <footer>
 
-  <p>
-    ✦ بالميثاق نبلغ الآفاق ✦
-  </p>
-
-  <p style="margin-top:8px;">
-    مشروع تفاعلي تعليمي
-  </p>
+  🇦🇪 رحلة تعليمية تفاعلية  
+  <br><br>
+  نتعلم • نفكر • نبدع
 
 </footer>
 
-<div class="modal" id="modal">
-
-  <div class="modal-box">
-
-    <div class="close" onclick="closeModal()">×</div>
-
-    <h2 id="modalTitle"></h2>
-
-    <p id="modalText" style="margin-top:20px;line-height:2;"></p>
-
-  </div>
-
-</div>
-
 <script>
 
-const texts = [
-  ["جاري تشغيل الرحلة...", "استعدوا لاكتشاف السر"],
-  ["ظهر الأبطال الخمسة!", "حصة • أحمد • مها • فاهم • شاهين"],
-  ["المعادلة المفقودة تنتظركم...", "هل تستطيعون حلها؟"],
-  ["بالميثاق نبلغ الآفاق ✦", "ابدأوا الرحلة الآن"]
-];
+let score = 0;
+let currentText = "";
 
-let aiIndex = 0;
+const characters = {
 
-setInterval(() => {
+  "حصة":
+  "مرحباً! أنا حصة. أحب التعلم وأعتز بهويتي الإماراتية. هل أنتِ مستعدة لخوض مغامرة الرياضيات؟",
 
-  aiIndex++;
+  "أحمد":
+  "هلا! أنا أحمد. في هذه الرحلة سنتعلم أن المسؤولية تبدأ عندما نحل التحدي ونكمل المهمة حتى النهاية.",
 
-  if(aiIndex >= texts.length){
-    aiIndex = 0;
-  }
+  "مها":
+  "مرحباً! أنا مها. أحب البيئة والرفق، واليوم سأرافقك في رحلة مليئة بالأرقام والأفكار الجميلة.",
 
-  document.getElementById("aiText").textContent = texts[aiIndex][0];
+  "فاهم":
+  "مرحباً! أنا فاهم، المساعد الذكي. 🤖 مهمتي أن أساعدك على التفكير بطريقة منطقية قبل اختيار الإجابة.",
 
-  document.getElementById("aiSub").textContent = texts[aiIndex][1];
-
-},3000);
+  "شاهين":
+  "حيّاكم! أنا شاهين. 🦅 في كل رحلة نحتاج إلى قائد يعرف هدفه، واليوم هدفنا أن نصل إلى الإجابة الصحيحة!"
+};
 
 function startJourney(){
 
@@ -868,149 +483,126 @@ function startJourney(){
     behavior:"smooth"
   });
 
-  createParticles();
+  speak(
+    "أهلاً بك في رحلة الأرقام الذكية. اختاري إحدى الشخصيات لتتعرفي عليها."
+  );
+}
+
+function talk(name){
+
+  const box = document.getElementById("talkBox");
+  const nameBox = document.getElementById("talkName");
+  const textBox = document.getElementById("talkText");
+
+  currentText = characters[name];
+
+  nameBox.textContent = name;
+  textBox.textContent = currentText;
+
+  box.classList.remove("show");
+
+  setTimeout(() => {
+
+    box.classList.add("show");
+
+    createStars();
+
+    speak(currentText, name);
+
+  },100);
 
 }
 
-function characterInfo(name){
+function speak(text,name=""){
 
-  const info = {
+  if(!("speechSynthesis" in window)){
 
-    "حصة":
-    "حصة تمثل الهوية الوطنية، وتحب القراءة ومساعدة الآخرين.",
+    return;
 
-    "أحمد":
-    "أحمد يمثل المسؤولية، ويحب التعلم والمبادرة.",
+  }
 
-    "مها":
-    "مها تمثل البيئة والرفق، وتلاحظ الأشياء الصغيرة التي تصنع فرقاً.",
+  speechSynthesis.cancel();
 
-    "فاهم":
-    "فاهم روبوت ذكي يحب التفكير المنطقي وحل المشكلات.",
+  const speech = new SpeechSynthesisUtterance(text);
 
-    "شاهين":
-    "شاهين صقر يرمز إلى القيادة والمثابرة."
+  speech.lang = "ar-AE";
 
-  };
+  speech.rate = name === "فاهم" ? 0.9 : 0.95;
 
-  document.getElementById("modalTitle").textContent = name;
+  speech.pitch = name === "فاهم" ? 1.25 : 1;
 
-  document.getElementById("modalText").textContent = info[name];
+  speechSynthesis.speak(speech);
+}
 
-  document.getElementById("modal").classList.add("show");
+function speakAgain(){
+
+  speak(currentText);
 
 }
 
-function closeModal(){
+function checkAnswer(answer){
 
-  document.getElementById("modal").classList.remove("show");
+  const result = document.getElementById("result");
 
-}
+  if(answer === 14){
 
-function station(number){
+    score += 10;
 
-  const messages = {
-
-    1:"محطة حصة: اكتشفي قيمة الهوية الوطنية.",
-
-    2:"محطة فاهم: استخدمي التفكير المنطقي.",
-
-    3:"محطة مها: اختاري السلوك الذي يحافظ على البيئة.",
-
-    4:"محطة أحمد: تحملي مسؤولية قراراتك.",
-
-    5:"محطة شاهين: فكري كقائدة وواجهي التحدي."
-
-  };
-
-  document.getElementById("modalTitle").textContent =
-    "المحطة " + number;
-
-  document.getElementById("modalText").textContent =
-    messages[number];
-
-  document.getElementById("modal").classList.add("show");
-
-  createParticles();
-
-}
-
-function checkAnswer(){
-
-  const answer =
-    document.getElementById("answer").value;
-
-  const result =
-    document.getElementById("result");
-
-  if(answer == 5){
+    document.getElementById("score").textContent = score;
 
     result.textContent =
-      "🎉 إجابة صحيحة! اكتشفتِ الرقم السري.";
+      "🎉 أحسنتِ! الإجابة صحيحة. فاهم فخور فيك!";
 
-    result.style.color =
-      "#f1cf65";
+    result.style.color = "#23733b";
 
-    document.getElementById("progress").style.width =
-      "100%";
+    document.getElementById("progress").style.width = "100%";
 
-    createParticles();
+    speak(
+      "أحسنت! الإجابة صحيحة. حصلت على عشر نقاط."
+    );
+
+    createStars();
 
   }else{
 
     result.textContent =
-      "حاولي مرة ثانية! تذكري: اطرحي 4 أولاً ثم اقسمي على 2.";
+      "💡 جربي مرة ثانية! احسبي الضرب أولاً.";
 
-    result.style.color =
-      "#ff9b9b";
+    result.style.color = "#7b1e25";
+
+    speak(
+      "قريب! جربي مرة ثانية واحسبي الضرب أولاً."
+    );
 
   }
 
 }
 
-function createParticles(){
+function createStars(){
 
-  for(let i=0;i<35;i++){
+  for(let i=0;i<8;i++){
 
-    const p =
-      document.createElement("div");
+    const star = document.createElement("div");
 
-    p.className =
-      "particle";
+    star.className = "star";
 
-    p.style.left =
-      (50 + Math.random()*10-5) + "%";
+    star.textContent = "✨";
 
-    p.style.top =
-      (50 + Math.random()*10-5) + "%";
+    star.style.left =
+      Math.random()*90 + "%";
 
-    p.style.setProperty(
-      "--x",
-      (Math.random()*500-250)+"px"
-    );
+    star.style.top =
+      50 + Math.random()*30 + "%";
 
-    p.style.setProperty(
-      "--y",
-      (Math.random()*500-250)+"px"
-    );
-
-    document.body.appendChild(p);
+    document.body.appendChild(star);
 
     setTimeout(()=>{
-      p.remove();
-    },2000);
+      star.remove();
+    },1000);
 
   }
 
 }
-
-document.addEventListener("keydown",(e)=>{
-
-  if(e.key === "Escape"){
-    closeModal();
-  }
-
-});
 
 </script>
 
