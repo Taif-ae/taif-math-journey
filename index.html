@@ -4,660 +4,620 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Taif | رحلة الميثاق الرياضية</title>
+<title>المعادلة المفقودة | رحلة الميثاق</title>
 
 <style>
-
-/* =========================
-   الأساس
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
   scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  font-family:"Tahoma","Arial",sans-serif;
+  font-family:"Cairo",sans-serif;
   background:
-    radial-gradient(circle at 10% 10%,#eee8ff 0,transparent 25%),
-    radial-gradient(circle at 90% 20%,#e6f8ff 0,transparent 25%),
-    #faf9ff;
-  color:#292546;
+    radial-gradient(circle at 20% 20%,rgba(212,175,55,.15),transparent 25%),
+    radial-gradient(circle at 80% 70%,rgba(139,30,32,.22),transparent 30%),
+    #07111f;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* =========================
-   الهيدر
-========================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(120deg,transparent 45%,rgba(255,255,255,.025) 50%,transparent 55%);
+  background-size:300% 300%;
+  animation:shine 9s infinite linear;
+  z-index:-1;
+}
+
+@keyframes shine{
+  0%{background-position:0 0}
+  100%{background-position:300% 300%}
+}
+
+/* HEADER */
 
 header{
   position:sticky;
   top:0;
-  z-index:100;
-  background:rgba(255,255,255,.9);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid #eeeaf8;
+  z-index:1000;
   padding:15px 6%;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
+  background:rgba(5,13,25,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .logo{
-  font-size:21px;
+  font-size:22px;
   font-weight:900;
-  color:#654bd5;
+  color:#f1cf65;
 }
 
 nav{
   display:flex;
-  gap:7px;
+  gap:10px;
   flex-wrap:wrap;
 }
 
-nav button{
-  border:0;
-  background:transparent;
-  padding:10px 13px;
-  border-radius:12px;
-  cursor:pointer;
-  color:#57536d;
-  font-weight:bold;
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:8px 14px;
+  border-radius:30px;
+  transition:.3s;
 }
 
-nav button:hover{
-  background:#eeeaff;
-  color:#604bd0;
+nav a:hover{
+  background:#8b1e20;
+  transform:translateY(-2px);
 }
 
-/* =========================
-   الصفحات
-========================= */
-
-.page{
-  display:none;
-  max-width:1150px;
-  margin:auto;
-  padding:70px 6%;
-  min-height:75vh;
-}
-
-.page.active{
-  display:block;
-}
-
-/* =========================
-   الرئيسية
-========================= */
+/* HERO */
 
 .hero{
-  min-height:520px;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
+  min-height:90vh;
+  display:flex;
   align-items:center;
-  gap:45px;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:70px 20px;
+}
+
+.hero-content{
+  max-width:1000px;
 }
 
 .badge{
   display:inline-block;
-  background:#ebe6ff;
-  color:#604bd0;
-  padding:9px 16px;
+  padding:8px 18px;
+  border:1px solid #d4af37;
   border-radius:30px;
-  font-weight:bold;
+  color:#f1cf65;
+  margin-bottom:20px;
+  animation:pulse 2s infinite;
 }
 
-h1{
-  font-size:58px;
-  line-height:1.15;
-  margin:18px 0;
+@keyframes pulse{
+  50%{box-shadow:0 0 30px rgba(212,175,55,.25)}
 }
 
-.gradient-text{
-  background:linear-gradient(90deg,#684dd6,#9a66e9,#3ba7c9);
+.hero h1{
+  font-size:clamp(48px,9vw,100px);
+  line-height:1;
+  font-weight:900;
+  background:linear-gradient(90deg,#fff,#f1cf65,#fff);
   -webkit-background-clip:text;
   color:transparent;
+  animation:titleIn 1.2s ease;
+}
+
+@keyframes titleIn{
+  from{opacity:0;transform:translateY(40px) scale(.9)}
+  to{opacity:1;transform:none}
 }
 
 .hero p{
-  font-size:19px;
-  line-height:2;
-  color:#706c82;
-  max-width:620px;
+  font-size:20px;
+  color:#cbd5e1;
+  margin:25px auto;
+  max-width:700px;
 }
 
-.primary{
-  border:0;
-  background:linear-gradient(135deg,#7055dc,#5740c4);
+.start-btn{
+  border:none;
+  background:linear-gradient(135deg,#8b1e20,#b92b30);
   color:white;
-  padding:15px 25px;
-  border-radius:15px;
+  padding:16px 35px;
+  border-radius:50px;
+  font-family:inherit;
+  font-size:18px;
+  font-weight:800;
   cursor:pointer;
-  font-size:17px;
-  font-weight:bold;
-  box-shadow:0 10px 25px #6752d433;
-  transition:.2s;
+  box-shadow:0 15px 40px rgba(139,30,32,.35);
+  transition:.3s;
 }
 
-.primary:hover{
-  transform:translateY(-3px) scale(1.02);
+.start-btn:hover{
+  transform:scale(1.06);
 }
 
-.secondary{
-  border:2px solid #ddd7f4;
-  background:white;
-  color:#5e4bc3;
-  padding:13px 22px;
-  border-radius:15px;
-  cursor:pointer;
-  font-weight:bold;
-  margin-right:8px;
-}
-
-.hero-buttons{
-  margin-top:25px;
-}
-
-/* =========================
-   الشخصية
-========================= */
-
-.character-card{
-  position:relative;
-  background:white;
-  min-height:390px;
-  border-radius:35px;
-  box-shadow:0 20px 55px #51429a20;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.character-card::before{
-  content:"";
-  position:absolute;
-  width:270px;
-  height:270px;
-  background:#eee9ff;
-  border-radius:50%;
-}
-
-.character{
-  position:relative;
-  width:190px;
-  height:250px;
-  z-index:2;
-}
-
-/* شخصية كرتونية بسيطة */
-
-.head{
-  width:115px;
-  height:115px;
-  background:#ffd6bd;
-  border-radius:50%;
-  position:absolute;
-  top:15px;
-  left:38px;
-  border:5px solid #493c74;
-}
-
-.hair{
-  position:absolute;
-  width:120px;
-  height:70px;
-  background:#45375f;
-  border-radius:60px 60px 25px 25px;
-  top:5px;
-  left:35px;
-  z-index:3;
-}
-
-.eye{
-  position:absolute;
-  width:9px;
-  height:13px;
-  background:#29233b;
-  border-radius:50%;
-  top:62px;
-  z-index:4;
-}
-
-.eye.one{left:66px}
-.eye.two{left:112px}
-
-.smile{
-  position:absolute;
-  width:28px;
-  height:13px;
-  border-bottom:4px solid #9a5362;
-  border-radius:50%;
-  top:87px;
-  left:80px;
-  z-index:4;
-}
-
-.body{
-  position:absolute;
-  width:125px;
-  height:120px;
-  background:#7258dc;
-  border-radius:45px 45px 20px 20px;
-  top:125px;
-  left:33px;
-  border:5px solid #493c74;
-}
+/* FLOATING STARS */
 
 .star{
   position:absolute;
-  top:160px;
-  left:77px;
-  color:#fff;
-  font-size:35px;
-  z-index:5;
+  color:#f1cf65;
+  animation:float 4s ease-in-out infinite;
 }
 
-/* =========================
-   البطاقات
-========================= */
+.star:nth-child(1){top:20%;left:15%}
+.star:nth-child(2){top:30%;right:12%;animation-delay:1s}
+.star:nth-child(3){bottom:20%;left:25%;animation-delay:2s}
+.star:nth-child(4){bottom:30%;right:25%;animation-delay:3s}
 
-.section-title{
-  text-align:center;
-  margin-bottom:45px;
+@keyframes float{
+  50%{transform:translateY(-25px) rotate(20deg)}
 }
 
-.section-title h2{
-  font-size:40px;
-  margin:14px 0;
-}
+/* AI VIDEO */
 
-.section-title p{
-  color:#777288;
-  font-size:18px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.card{
-  background:white;
-  border:1px solid #eeeaf6;
-  border-radius:24px;
-  padding:28px;
-  box-shadow:0 12px 30px #3d32750c;
-  transition:.2s;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px #3d32751a;
-}
-
-.icon{
-  font-size:40px;
-}
-
-.card h3{
-  font-size:22px;
-}
-
-/* =========================
-   خريطة الرحلة
-========================= */
-
-.journey{
+.ai-video{
+  width:min(900px,92%);
+  height:500px;
+  margin:30px auto 100px;
+  border-radius:35px;
+  overflow:hidden;
   position:relative;
-  max-width:850px;
-  margin:auto;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(212,175,55,.25),transparent 25%),
+    linear-gradient(135deg,#07111f,#111d33,#421518);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 30px 100px rgba(0,0,0,.45);
 }
 
-.journey::before{
+.ai-video::before{
   content:"";
   position:absolute;
-  top:25px;
-  bottom:25px;
-  right:35px;
-  width:5px;
-  background:linear-gradient(#7055dc,#53b8c9);
-  border-radius:10px;
+  inset:-50%;
+  background:conic-gradient(transparent,#d4af37,transparent,#8b1e20,transparent);
+  animation:rotate 8s linear infinite;
+  opacity:.25;
 }
 
-.stop{
-  position:relative;
-  background:white;
-  margin:25px 0;
-  padding:25px 75px 25px 25px;
-  border-radius:22px;
-  box-shadow:0 10px 30px #3d32750e;
-  cursor:pointer;
-  transition:.2s;
+@keyframes rotate{
+  to{transform:rotate(360deg)}
 }
 
-.stop:hover{
-  transform:translateX(-5px);
-}
-
-.stop-number{
+.ai-content{
   position:absolute;
-  right:13px;
-  top:20px;
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:#7055dc;
-  color:white;
-  display:grid;
-  place-items:center;
-  font-weight:bold;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   z-index:2;
 }
 
-.stop h3{
-  margin:0 0 7px;
+.ai-orb{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,#f1cf65 25%,#8b1e20 55%,transparent 70%);
+  animation:orb 2s infinite;
 }
 
-/* =========================
-   الدرس
-========================= */
+@keyframes orb{
+  50%{transform:scale(1.25);filter:blur(2px)}
+}
 
-.lesson{
-  max-width:720px;
-  margin:auto;
-  background:white;
-  border-radius:30px;
-  padding:40px;
-  box-shadow:0 18px 45px #3d327515;
+.ai-text{
+  margin-top:25px;
+  font-size:28px;
+  font-weight:900;
+}
+
+.ai-sub{
+  color:#cbd5e1;
+  margin-top:8px;
+}
+
+/* SECTIONS */
+
+section{
+  padding:100px 7%;
+}
+
+.section-title{
   text-align:center;
+  margin-bottom:55px;
+}
+
+.section-title h2{
+  font-size:42px;
+  color:#f1cf65;
+}
+
+.section-title p{
+  color:#aab7ca;
+  margin-top:10px;
+}
+
+/* STORY */
+
+.story{
+  max-width:1000px;
+  margin:auto;
+  text-align:center;
+  font-size:19px;
+  line-height:2;
+  color:#dce4ef;
+}
+
+.story strong{
+  color:#f1cf65;
+}
+
+/* CHARACTERS */
+
+.characters{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.character{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:25px;
+  padding:20px;
+  text-align:center;
+  transition:.4s;
+  overflow:hidden;
+}
+
+.character:hover{
+  transform:translateY(-12px) rotate(-1deg);
+  border-color:#d4af37;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.character-img{
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle,rgba(212,175,55,.12),transparent 60%);
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:15px;
+}
+
+.character-img img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:.5s;
+}
+
+.character:hover img{
+  transform:scale(1.08);
+}
+
+.character h3{
+  color:#f1cf65;
+  font-size:24px;
+}
+
+.character p{
+  color:#b7c3d4;
+  margin-top:5px;
+}
+
+/* MAP */
+
+.map{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+}
+
+.station{
+  min-height:190px;
+  padding:20px;
+  border-radius:25px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  cursor:pointer;
+  transition:.4s;
+}
+
+.station:hover{
+  transform:translateY(-10px);
+  background:linear-gradient(145deg,#8b1e20,#4b1012);
+}
+
+.station .number{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#d4af37;
+  color:#151515;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.station h3{
+  color:#fff;
+}
+
+.station small{
+  color:#bdc8d7;
+}
+
+/* CHALLENGE */
+
+.challenge-box{
+  max-width:800px;
+  margin:auto;
+  padding:45px;
+  border-radius:30px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(212,175,55,.25);
+  text-align:center;
+  box-shadow:0 25px 80px rgba(0,0,0,.25);
 }
 
 .equation{
-  font-size:38px;
+  font-size:45px;
+  color:#f1cf65;
   font-weight:900;
-  margin:25px 0;
-  color:#4f3cae;
-}
-
-.step{
-  background:#f4f1ff;
-  margin:12px;
-  padding:15px;
-  border-radius:14px;
-  font-size:19px;
-}
-
-.correct{
-  background:#e9fff3;
-  color:#258052;
-  font-weight:bold;
-}
-
-/* =========================
-   التحدي
-========================= */
-
-.quiz{
-  max-width:700px;
-  margin:auto;
-  background:white;
-  padding:40px;
-  border-radius:30px;
-  text-align:center;
-  box-shadow:0 18px 45px #3d327515;
-}
-
-.answers{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+  margin:25px;
 }
 
 .answer{
-  border:0;
-  background:#eeeaff;
-  color:#5541bb;
-  padding:15px 25px;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:17px;
-  font-weight:bold;
-}
-
-.answer:hover{
-  background:#ddd5ff;
-}
-
-#feedback{
-  min-height:30px;
-  font-weight:bold;
-  margin-top:20px;
-}
-
-/* =========================
-   الإنجاز
-========================= */
-
-.achievement{
-  max-width:650px;
-  margin:30px auto;
-  background:white;
-  padding:40px;
+  width:220px;
+  padding:14px;
+  border:none;
+  border-radius:15px;
   text-align:center;
-  border-radius:30px;
-  box-shadow:0 18px 45px #3d327515;
+  font-size:20px;
+  font-family:inherit;
+  outline:none;
 }
 
-.trophy{
-  font-size:80px;
+.check-btn{
+  margin-top:15px;
+  padding:13px 28px;
+  border:none;
+  border-radius:15px;
+  background:#d4af37;
+  color:#171717;
+  font-weight:900;
+  cursor:pointer;
+  font-family:inherit;
 }
 
-.progress{
-  height:14px;
-  background:#eeeaf8;
-  border-radius:20px;
-  overflow:hidden;
-  margin:25px 0;
+.result{
+  margin-top:20px;
+  min-height:30px;
+  font-weight:800;
+}
+
+/* PROGRESS */
+
+.progress-wrap{
+  max-width:700px;
+  margin:40px auto;
 }
 
 .progress-bar{
-  width:33%;
-  height:100%;
-  background:linear-gradient(90deg,#7055dc,#54b9c7);
+  height:20px;
+  background:rgba(255,255,255,.1);
+  border-radius:20px;
+  overflow:hidden;
 }
 
-/* =========================
-   الفوتر
-========================= */
+.progress{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#8b1e20,#d4af37);
+  transition:1s;
+}
+
+/* FOOTER */
 
 footer{
-  background:#292546;
-  color:white;
+  padding:50px 20px;
   text-align:center;
-  padding:30px;
+  border-top:1px solid rgba(255,255,255,.1);
+  color:#9eacbd;
 }
 
-footer span{
-  color:#bcaeff;
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  backdrop-filter:blur(12px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+  padding:20px;
 }
 
-/* =========================
-   الجوال
-========================= */
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  max-width:700px;
+  width:100%;
+  background:#0b1729;
+  border:1px solid #d4af37;
+  border-radius:30px;
+  padding:40px;
+  text-align:center;
+  animation:modalIn .5s ease;
+}
+
+@keyframes modalIn{
+  from{transform:scale(.7);opacity:0}
+  to{transform:none;opacity:1}
+}
+
+.close{
+  position:absolute;
+  top:25px;
+  right:30px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
 
 @media(max-width:800px){
+  .map{
+    grid-template-columns:1fr 1fr;
+  }
 
-  header{
-    display:block;
+  .ai-video{
+    height:400px;
   }
 
   nav{
-    margin-top:12px;
+    display:none;
   }
-
-  .hero{
-    grid-template-columns:1fr;
-  }
-
-  h1{
-    font-size:42px;
-  }
-
-  .cards{
-    grid-template-columns:1fr;
-  }
-
 }
 
+@media(max-width:500px){
+  .map{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:55px;
+  }
+
+  .challenge-box{
+    padding:25px;
+  }
+}
+
+/* PARTICLES */
+
+.particle{
+  position:fixed;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#f1cf65;
+  pointer-events:none;
+  animation:particleMove 2s ease-out forwards;
+  z-index:5000;
+}
+
+@keyframes particleMove{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
 </style>
 </head>
 
-
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
-
-  <div class="logo">
-    🧮 Taif Math Journey
-  </div>
+  <div class="logo">✦ الميثاق ✦</div>
 
   <nav>
-    <button onclick="showPage('home')">الرئيسية</button>
-    <button onclick="showPage('journey')">رحلتي</button>
-    <button onclick="showPage('lesson')">التعلّم</button>
-    <button onclick="showPage('challenge')">التحدي</button>
-    <button onclick="showPage('achievement')">إنجازاتي</button>
+    <a href="#story">القصة</a>
+    <a href="#characters">الأبطال</a>
+    <a href="#map">الخريطة</a>
+    <a href="#challenge">التحدي</a>
   </nav>
-
 </header>
 
 
-<!-- =========================
-     HOME
-========================= -->
+<!-- HERO -->
 
-<section id="home" class="page active">
+<section class="hero">
 
-  <div class="hero">
+  <span class="star">✦</span>
+  <span class="star">✧</span>
+  <span class="star">✦</span>
+  <span class="star">✧</span>
 
-    <div>
+  <div class="hero-content">
 
-      <span class="badge">
-        ✨ مشروع Taif
-      </span>
-
-      <h1>
-        رحلة
-        <span class="gradient-text">
-          المعادلة الذكية
-        </span>
-      </h1>
-
-      <p>
-        أهلاً بكِ في عالم الميثاق الرياضي!
-        هنا ستتعلمين، وتكتشفين، وتتحدين نفسك
-        في رحلة تفاعلية مليئة بالمغامرات.
-      </p>
-
-      <div class="hero-buttons">
-
-        <button class="primary" onclick="showPage('journey')">
-          ابدئي الرحلة 🚀
-        </button>
-
-        <button class="secondary" onclick="showPage('lesson')">
-          أريد أن أتعلم 📚
-        </button>
-
-      </div>
-
+    <div class="badge">
+      رحلة تفاعلية في عالم الميثاق
     </div>
 
+    <h1>المعادلة<br>المفقودة</h1>
 
-    <!-- الشخصية -->
+    <p>
+      خمسة أبطال، خمس محطات، ومعادلة واحدة تنتظر من يكتشف سرها.
+    </p>
 
-    <div class="character-card">
-
-      <div class="character">
-
-        <div class="hair"></div>
-
-        <div class="head">
-
-          <div class="eye one"></div>
-          <div class="eye two"></div>
-
-          <div class="smile"></div>
-
-        </div>
-
-        <div class="body"></div>
-
-        <div class="star">
-          ★
-        </div>
-
-      </div>
-
-    </div>
+    <button class="start-btn" onclick="startJourney()">
+      ابدأ الرحلة ✦
+    </button>
 
   </div>
+</section>
 
 
-  <div class="cards">
+<!-- AI STYLE INTRO -->
 
-    <div class="card">
+<section id="video">
 
-      <div class="icon">🧭</div>
+  <div class="section-title">
+    <h2>🎬 افتتاحية الذكاء الاصطناعي</h2>
+    <p>مشهد افتتاحي متحرك داخل الموقع</p>
+  </div>
 
-      <h3>
-        رحلة الميثاق
-      </h3>
+  <div class="ai-video">
 
-      <p>
-        تنقلي بين محطات مختلفة
-        واكتشفي أسرار الرياضيات.
-      </p>
+    <div class="ai-content">
 
-    </div>
+      <div class="ai-orb"></div>
 
+      <div class="ai-text" id="aiText">
+        جاري تشغيل الرحلة...
+      </div>
 
-    <div class="card">
-
-      <div class="icon">🧠</div>
-
-      <h3>
-        تعلّمي بذكاء
-      </h3>
-
-      <p>
-        خطوات قصيرة وواضحة
-        تساعدك على فهم المعادلات.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🏆</div>
-
-      <h3>
-        اجمعي الإنجازات
-      </h3>
-
-      <p>
-        أكملي التحديات وافتحي
-        لوحة الإنجازات الخاصة بكِ.
-      </p>
+      <div class="ai-sub" id="aiSub">
+        بالميثاق نبلغ الآفاق
+      </div>
 
     </div>
 
@@ -666,96 +626,144 @@ footer span{
 </section>
 
 
-<!-- =========================
-     JOURNEY
-========================= -->
+<!-- STORY -->
 
-<section id="journey" class="page">
+<section id="story">
 
   <div class="section-title">
+    <h2>📖 القصة</h2>
+    <p>البداية...</p>
+  </div>
 
-    <span class="badge">
-      🗺️ خريطة الرحلة
-    </span>
-
-    <h2>
-      مغامرتك تبدأ من هنا
-    </h2>
+  <div class="story">
 
     <p>
-      اختاري المحطة التي تريدين استكشافها.
+      في صباحٍ مختلف، اكتشف الطلبة أن هناك
+      <strong>معادلة مفقودة</strong>
+      لا يمكن حلها إلا بجمع خمس قيم.
+    </p>
+
+    <br>
+
+    <p>
+      تبدأ الرحلة مع أبطال الميثاق:
+      <strong>حصة، أحمد، مها، فاهم، وشاهين.</strong>
+    </p>
+
+    <br>
+
+    <p>
+      كل بطل يملك محطة، وكل محطة تحتوي على تحدٍ.
+      هل تستطيعون جمع الأختام الخمسة والوصول إلى المعادلة؟
     </p>
 
   </div>
 
+</section>
 
-  <div class="journey">
 
+<!-- CHARACTERS -->
 
-    <div class="stop" onclick="showPage('lesson')">
+<section id="characters">
 
-      <div class="stop-number">
-        1
+  <div class="section-title">
+    <h2>⭐ أبطال الميثاق</h2>
+    <p>اضغطي على أي شخصية لاكتشاف دورها</p>
+  </div>
+
+  <div class="characters">
+
+    <!-- HESSA -->
+
+    <div class="character" onclick="characterInfo('حصة')">
+
+      <div class="character-img">
+
+        <!-- ضعي صورة حصة هنا -->
+        <img src="images/hessa.png"
+             alt="حصة"
+             onerror="this.style.display='none';this.parentElement.innerHTML='👧';this.parentElement.style.fontSize='100px';">
+
       </div>
 
-      <h3>
-        📚 بوابة المعرفة
-      </h3>
-
-      <p>
-        تعلّمي ما هي المعادلة وكيف نحلها.
-      </p>
+      <h3>حصة</h3>
+      <p>الهوية الوطنية</p>
 
     </div>
 
 
-    <div class="stop" onclick="showPage('lesson')">
+    <!-- AHMED -->
 
-      <div class="stop-number">
-        2
+    <div class="character" onclick="characterInfo('أحمد')">
+
+      <div class="character-img">
+
+        <!-- ضعي صورة أحمد هنا -->
+        <img src="images/ahmed.png"
+             alt="أحمد"
+             onerror="this.style.display='none';this.parentElement.innerHTML='👦';this.parentElement.style.fontSize='100px';">
+
       </div>
 
-      <h3>
-        🔍 محطة الاكتشاف
-      </h3>
-
-      <p>
-        اكتشفي خطوات الوصول إلى قيمة x.
-      </p>
+      <h3>أحمد</h3>
+      <p>المسؤولية</p>
 
     </div>
 
 
-    <div class="stop" onclick="showPage('challenge')">
+    <!-- MAHA -->
 
-      <div class="stop-number">
-        3
+    <div class="character" onclick="characterInfo('مها')">
+
+      <div class="character-img">
+
+        <!-- ضعي صورة مها هنا -->
+        <img src="images/maha.png"
+             alt="مها"
+             onerror="this.style.display='none';this.parentElement.innerHTML='🦌';this.parentElement.style.fontSize='100px';">
+
       </div>
 
-      <h3>
-        🎯 ساحة التحدي
-      </h3>
-
-      <p>
-        اختبري مهاراتك في سؤال رياضي.
-      </p>
+      <h3>مها</h3>
+      <p>البيئة والرفق</p>
 
     </div>
 
 
-    <div class="stop" onclick="showPage('achievement')">
+    <!-- FAHEM -->
 
-      <div class="stop-number">
-        4
+    <div class="character" onclick="characterInfo('فاهم')">
+
+      <div class="character-img">
+
+        <!-- ضعي صورة فاهم هنا -->
+        <img src="images/fahem.png"
+             alt="فاهم"
+             onerror="this.style.display='none';this.parentElement.innerHTML='🤖';this.parentElement.style.fontSize='100px';">
+
       </div>
 
-      <h3>
-        🏆 قاعة الإنجازات
-      </h3>
+      <h3>فاهم</h3>
+      <p>التفكير المنطقي</p>
 
-      <p>
-        شاهدي تقدمك وما حققتِه.
-      </p>
+    </div>
+
+
+    <!-- SHAHIN -->
+
+    <div class="character" onclick="characterInfo('شاهين')">
+
+      <div class="character-img">
+
+        <!-- ضعي صورة شاهين هنا -->
+        <img src="images/shahin.png"
+             alt="شاهين"
+             onerror="this.style.display='none';this.parentElement.innerHTML='🦅';this.parentElement.style.fontSize='100px';">
+
+      </div>
+
+      <h3>شاهين</h3>
+      <p>القيادة</p>
 
     </div>
 
@@ -764,290 +772,349 @@ footer span{
 </section>
 
 
-<!-- =========================
-     LESSON
-========================= -->
+<!-- MAP -->
 
-<section id="lesson" class="page">
+<section id="map">
 
   <div class="section-title">
 
-    <span class="badge">
-      📚 بوابة المعرفة
-    </span>
-
-    <h2>
-      لنحل المعادلة معًا
-    </h2>
+    <h2>🗺️ خريطة الرحلة</h2>
 
     <p>
-      الفكرة بسيطة: نحافظ على توازن طرفي المعادلة.
+      خمس محطات للوصول إلى المعادلة المفقودة
     </p>
 
   </div>
 
+  <div class="map">
 
-  <div class="lesson">
+    <div class="station" onclick="station(1)">
+      <div class="number">1</div>
+      <h3>محطة حصة</h3>
+      <small>الهوية الوطنية</small>
+    </div>
+
+    <div class="station" onclick="station(2)">
+      <div class="number">2</div>
+      <h3>محطة فاهم</h3>
+      <small>التفكير المنطقي</small>
+    </div>
+
+    <div class="station" onclick="station(3)">
+      <div class="number">3</div>
+      <h3>محطة مها</h3>
+      <small>البيئة والرفق</small>
+    </div>
+
+    <div class="station" onclick="station(4)">
+      <div class="number">4</div>
+      <h3>محطة أحمد</h3>
+      <small>المسؤولية</small>
+    </div>
+
+    <div class="station" onclick="station(5)">
+      <div class="number">5</div>
+      <h3>محطة شاهين</h3>
+      <small>القيادة</small>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CHALLENGE -->
+
+<section id="challenge">
+
+  <div class="section-title">
+
+    <h2>🧠 التحدي الأخير</h2>
+
+    <p>
+      حلّي المعادلة واكتشفي الرقم السري
+    </p>
+
+  </div>
+
+  <div class="challenge-box">
+
+    <h3>
+      فاهم يحتاج مساعدتك!
+    </h3>
 
     <div class="equation">
-      x + 7 = 12
+      2س + 4 = 14
     </div>
 
-    <div class="step">
-      ✏️ نطرح 7 من الطرفين
-    </div>
+    <p>
+      كم تساوي س؟
+    </p>
 
-    <div class="step">
-      x + 7 − 7 = 12 − 7
-    </div>
+    <br>
 
-    <div class="step correct">
-      🎉 إذن x = 5
-    </div>
+    <input
+      class="answer"
+      id="answer"
+      type="number"
+      placeholder="اكتبي الإجابة"
+    >
 
-    <button
-      class="primary"
-      onclick="showPage('challenge')">
+    <br>
 
-      جاهزة للتحدي؟ 🎯
-
+    <button class="check-btn" onclick="checkAnswer()">
+      تحقق من الإجابة
     </button>
+
+    <div class="result" id="result"></div>
+
+  </div>
+
+
+  <div class="progress-wrap">
+
+    <p style="text-align:center;margin-bottom:10px;">
+      تقدم الرحلة
+    </p>
+
+    <div class="progress-bar">
+
+      <div class="progress" id="progress"></div>
+
+    </div>
 
   </div>
 
 </section>
 
-
-<!-- =========================
-     CHALLENGE
-========================= -->
-
-<section id="challenge" class="page">
-
-  <div class="section-title">
-
-    <span class="badge">
-      🎯 ساحة التحدي
-    </span>
-
-    <h2>
-      أوجدي قيمة x
-    </h2>
-
-    <p>
-      اختاري الإجابة الصحيحة.
-    </p>
-
-  </div>
-
-
-  <div class="quiz">
-
-    <div class="equation">
-      2x + 4 = 14
-    </div>
-
-
-    <div class="answers">
-
-      <button
-        class="answer"
-        onclick="checkAnswer(4)">
-        x = 4
-      </button>
-
-
-      <button
-        class="answer"
-        onclick="checkAnswer(5)">
-        x = 5
-      </button>
-
-
-      <button
-        class="answer"
-        onclick="checkAnswer(7)">
-        x = 7
-      </button>
-
-    </div>
-
-
-    <p id="feedback"></p>
-
-
-    <button
-      class="primary"
-      onclick="showPage('achievement')">
-
-      مشاهدة الإنجاز 🏆
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ACHIEVEMENT
-========================= -->
-
-<section id="achievement" class="page">
-
-  <div class="section-title">
-
-    <span class="badge">
-      🏆 إنجازاتي
-    </span>
-
-    <h2>
-      أحسنتِ يا Taif!
-    </h2>
-
-    <p>
-      كل خطوة صغيرة تقرّبك من إتقان الرياضيات.
-    </p>
-
-  </div>
-
-
-  <div class="achievement">
-
-    <div class="trophy">
-      🏆
-    </div>
-
-    <h2>
-      مستكشفة المعادلات
-    </h2>
-
-    <p>
-      أنجزتِ أول تحدٍ في رحلة الميثاق!
-    </p>
-
-
-    <div class="progress">
-
-      <div
-        class="progress-bar"
-        id="progressBar">
-      </div>
-
-    </div>
-
-
-    <p>
-      تقدم الرحلة: <strong id="progressText">33%</strong>
-    </p>
-
-
-    <button
-      class="primary"
-      onclick="showPage('journey')">
-
-      العودة إلى الرحلة 🗺️
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
-  <div>
-    🧮 Taif Math Journey
-  </div>
-
   <p>
-    مشروع رياضيات تفاعلي
+    ✦ بالميثاق نبلغ الآفاق ✦
   </p>
 
-  <span>
-    صُنع بحب بواسطة Taif ✨
-  </span>
+  <p style="margin-top:8px;">
+    مشروع تفاعلي تعليمي
+  </p>
 
 </footer>
 
 
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <div class="close" onclick="closeModal()">×</div>
+
+    <h2 id="modalTitle"></h2>
+
+    <p id="modalText" style="margin-top:20px;line-height:2;"></p>
+
+  </div>
+
+</div>
+
+
 <script>
 
-/* =========================
-   التنقل بين الصفحات
-========================= */
+/* AI STYLE INTRO */
 
-function showPage(pageId){
+const texts = [
+  ["جاري تشغيل الرحلة...", "استعدوا لاكتشاف السر"],
+  ["ظهر الأبطال الخمسة!", "حصة • أحمد • مها • فاهم • شاهين"],
+  ["المعادلة المفقودة تنتظركم...", "هل تستطيعون حلها؟"],
+  ["بالميثاق نبلغ الآفاق ✦", "ابدأوا الرحلة الآن"]
+];
 
-  document
-    .querySelectorAll(".page")
-    .forEach(function(page){
+let aiIndex = 0;
 
-      page.classList.remove("active");
+setInterval(() => {
 
-    });
+  aiIndex++;
+
+  if(aiIndex >= texts.length){
+    aiIndex = 0;
+  }
+
+  document.getElementById("aiText").textContent = texts[aiIndex][0];
+
+  document.getElementById("aiSub").textContent = texts[aiIndex][1];
+
+},3000);
 
 
-  document
-    .getElementById(pageId)
-    .classList.add("active");
+/* START */
 
+function startJourney(){
 
-  window.scrollTo({
-    top:0,
+  document.getElementById("characters").scrollIntoView({
     behavior:"smooth"
   });
+
+  createParticles();
 
 }
 
 
-/* =========================
-   التحدي
-========================= */
+/* CHARACTER INFO */
 
-function checkAnswer(answer){
+function characterInfo(name){
 
-  const feedback =
-    document.getElementById("feedback");
+  const info = {
 
-  const progress =
-    document.getElementById("progressBar");
+    "حصة":
+    "حصة تمثل الهوية الوطنية، وتحب القراءة ومساعدة الآخرين.",
 
-  const progressText =
-    document.getElementById("progressText");
+    "أحمد":
+    "أحمد يمثل المسؤولية، ويحب التعلم والمبادرة.",
+
+    "مها":
+    "مها غزالة تحب البيئة والرفق، وتلاحظ الأشياء الصغيرة التي تصنع فرقاً.",
+
+    "فاهم":
+    "فاهم روبوت ذكي يحب التفكير المنطقي وحل المشكلات.",
+
+    "شاهين":
+    "شاهين صقر حكيم يرمز إلى القيادة والمثابرة."
+
+  };
+
+  document.getElementById("modalTitle").textContent = name;
+
+  document.getElementById("modalText").textContent = info[name];
+
+  document.getElementById("modal").classList.add("show");
+
+}
 
 
-  if(answer === 5){
+/* CLOSE */
 
-    feedback.innerHTML =
-      "🎉 ممتاز! إجابتك صحيحة. أنتِ مستكشفة رائعة!";
+function closeModal(){
 
-    feedback.style.color =
-      "#258052";
+  document.getElementById("modal").classList.remove("show");
+
+}
 
 
-    progress.style.width =
-      "66%";
+/* STATIONS */
 
-    progressText.textContent =
-      "66%";
+function station(number){
+
+  const messages = {
+
+    1:"محطة حصة: اكتشفي قيمة الهوية الوطنية.",
+
+    2:"محطة فاهم: استخدمي التفكير المنطقي.",
+
+    3:"محطة مها: اختاري السلوك الذي يحافظ على البيئة.",
+
+    4:"محطة أحمد: تحملي مسؤولية قراراتك.",
+
+    5:"محطة شاهين: فكري كقائدة وواجهي التحدي."
+
+  };
+
+  document.getElementById("modalTitle").textContent =
+    "المحطة " + number;
+
+  document.getElementById("modalText").textContent =
+    messages[number];
+
+  document.getElementById("modal").classList.add("show");
+
+  createParticles();
+
+}
+
+
+/* MATH */
+
+function checkAnswer(){
+
+  const answer =
+    document.getElementById("answer").value;
+
+  const result =
+    document.getElementById("result");
+
+  if(answer == 5){
+
+    result.textContent =
+      "🎉 إجابة صحيحة! اكتشفتِ الرقم السري.";
+
+    result.style.color =
+      "#f1cf65";
+
+    document.getElementById("progress").style.width =
+      "100%";
+
+    createParticles();
 
   }else{
 
-    feedback.innerHTML =
-      "💡 حاولي مرة أخرى! اطرحي 4 أولاً، ثم اقسمي على 2.";
+    result.textContent =
+      "حاولي مرة ثانية! تذكري: اطرحي 4 أولاً ثم اقسمي على 2.";
 
-    feedback.style.color =
-      "#c15a5a";
+    result.style.color =
+      "#ff9b9b";
 
   }
 
 }
+
+
+/* PARTICLES */
+
+function createParticles(){
+
+  for(let i=0;i<35;i++){
+
+    const p =
+      document.createElement("div");
+
+    p.className =
+      "particle";
+
+    p.style.left =
+      (50 + Math.random()*10-5) + "%";
+
+    p.style.top =
+      (50 + Math.random()*10-5) + "%";
+
+    p.style.setProperty(
+      "--x",
+      (Math.random()*500-250)+"px"
+    );
+
+    p.style.setProperty(
+      "--y",
+      (Math.random()*500-250)+"px"
+    );
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>{
+      p.remove();
+    },2000);
+
+  }
+
+}
+
+
+/* ESC CLOSE */
+
+document.addEventListener("keydown",(e)=>{
+
+  if(e.key === "Escape"){
+    closeModal();
+  }
+
+});
 
 </script>
 
