@@ -46,8 +46,6 @@ body::before{
   100%{background-position:300% 300%}
 }
 
-/* HEADER */
-
 header{
   position:sticky;
   top:0;
@@ -85,8 +83,6 @@ nav a:hover{
   background:#8b1e20;
   transform:translateY(-2px);
 }
-
-/* HERO */
 
 .hero{
   min-height:90vh;
@@ -156,8 +152,6 @@ nav a:hover{
   transform:scale(1.06);
 }
 
-/* FLOATING STARS */
-
 .star{
   position:absolute;
   color:#f1cf65;
@@ -172,8 +166,6 @@ nav a:hover{
 @keyframes float{
   50%{transform:translateY(-25px) rotate(20deg)}
 }
-
-/* AI VIDEO */
 
 .ai-video{
   width:min(900px,92%);
@@ -235,8 +227,6 @@ nav a:hover{
   margin-top:8px;
 }
 
-/* SECTIONS */
-
 section{
   padding:100px 7%;
 }
@@ -256,8 +246,6 @@ section{
   margin-top:10px;
 }
 
-/* STORY */
-
 .story{
   max-width:1000px;
   margin:auto;
@@ -270,8 +258,6 @@ section{
 .story strong{
   color:#f1cf65;
 }
-
-/* CHARACTERS */
 
 .characters{
   display:grid;
@@ -302,11 +288,11 @@ section{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:
-    radial-gradient(circle,rgba(212,175,55,.12),transparent 60%);
+  background:radial-gradient(circle,rgba(212,175,55,.12),transparent 60%);
   border-radius:20px;
   overflow:hidden;
   margin-bottom:15px;
+  font-size:100px;
 }
 
 .character-img img{
@@ -329,8 +315,6 @@ section{
   color:#b7c3d4;
   margin-top:5px;
 }
-
-/* MAP */
 
 .map{
   max-width:1100px;
@@ -380,8 +364,6 @@ section{
   color:#bdc8d7;
 }
 
-/* CHALLENGE */
-
 .challenge-box{
   max-width:800px;
   margin:auto;
@@ -429,8 +411,6 @@ section{
   font-weight:800;
 }
 
-/* PROGRESS */
-
 .progress-wrap{
   max-width:700px;
   margin:40px auto;
@@ -450,16 +430,12 @@ section{
   transition:1s;
 }
 
-/* FOOTER */
-
 footer{
   padding:50px 20px;
   text-align:center;
   border-top:1px solid rgba(255,255,255,.1);
   color:#9eacbd;
 }
-
-/* MODAL */
 
 .modal{
   position:fixed;
@@ -501,7 +477,23 @@ footer{
   cursor:pointer;
 }
 
-/* RESPONSIVE */
+.particle{
+  position:fixed;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#f1cf65;
+  pointer-events:none;
+  animation:particleMove 2s ease-out forwards;
+  z-index:5000;
+}
+
+@keyframes particleMove{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
 
 @media(max-width:800px){
   .map{
@@ -530,26 +522,6 @@ footer{
     padding:25px;
   }
 }
-
-/* PARTICLES */
-
-.particle{
-  position:fixed;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#f1cf65;
-  pointer-events:none;
-  animation:particleMove 2s ease-out forwards;
-  z-index:5000;
-}
-
-@keyframes particleMove{
-  to{
-    transform:translate(var(--x),var(--y));
-    opacity:0;
-  }
-}
 </style>
 </head>
 
@@ -565,9 +537,6 @@ footer{
     <a href="#challenge">التحدي</a>
   </nav>
 </header>
-
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -595,9 +564,6 @@ footer{
   </div>
 </section>
 
-
-<!-- AI STYLE INTRO -->
-
 <section id="video">
 
   <div class="section-title">
@@ -624,9 +590,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- STORY -->
 
 <section id="story">
 
@@ -661,9 +624,6 @@ footer{
 
 </section>
 
-
-<!-- CHARACTERS -->
-
 <section id="characters">
 
   <div class="section-title">
@@ -673,17 +633,12 @@ footer{
 
   <div class="characters">
 
-    <!-- HESSA -->
-
     <div class="character" onclick="characterInfo('حصة')">
 
       <div class="character-img">
-
-        <!-- ضعي صورة حصة هنا -->
         <img src="images/hessa.png"
              alt="حصة"
-             onerror="this.style.display='none';this.parentElement.innerHTML='👧';this.parentElement.style.fontSize='100px';">
-
+             onerror="this.style.display='none';this.parentElement.innerHTML='👧';">
       </div>
 
       <h3>حصة</h3>
@@ -691,18 +646,12 @@ footer{
 
     </div>
 
-
-    <!-- AHMED -->
-
     <div class="character" onclick="characterInfo('أحمد')">
 
       <div class="character-img">
-
-        <!-- ضعي صورة أحمد هنا -->
         <img src="images/ahmed.png"
              alt="أحمد"
-             onerror="this.style.display='none';this.parentElement.innerHTML='👦';this.parentElement.style.fontSize='100px';">
-
+             onerror="this.style.display='none';this.parentElement.innerHTML='👦';">
       </div>
 
       <h3>أحمد</h3>
@@ -710,18 +659,12 @@ footer{
 
     </div>
 
-
-    <!-- MAHA -->
-
     <div class="character" onclick="characterInfo('مها')">
 
       <div class="character-img">
-
-        <!-- ضعي صورة مها هنا -->
         <img src="images/maha.png"
              alt="مها"
-             onerror="this.style.display='none';this.parentElement.innerHTML='🦌';this.parentElement.style.fontSize='100px';">
-
+             onerror="this.style.display='none';this.parentElement.innerHTML='🦌';">
       </div>
 
       <h3>مها</h3>
@@ -729,18 +672,12 @@ footer{
 
     </div>
 
-
-    <!-- FAHEM -->
-
     <div class="character" onclick="characterInfo('فاهم')">
 
       <div class="character-img">
-
-        <!-- ضعي صورة فاهم هنا -->
         <img src="images/fahem.png"
              alt="فاهم"
-             onerror="this.style.display='none';this.parentElement.innerHTML='🤖';this.parentElement.style.fontSize='100px';">
-
+             onerror="this.style.display='none';this.parentElement.innerHTML='🤖';">
       </div>
 
       <h3>فاهم</h3>
@@ -748,18 +685,12 @@ footer{
 
     </div>
 
-
-    <!-- SHAHIN -->
-
     <div class="character" onclick="characterInfo('شاهين')">
 
       <div class="character-img">
-
-        <!-- ضعي صورة شاهين هنا -->
         <img src="images/shahin.png"
              alt="شاهين"
-             onerror="this.style.display='none';this.parentElement.innerHTML='🦅';this.parentElement.style.fontSize='100px';">
-
+             onerror="this.style.display='none';this.parentElement.innerHTML='🦅';">
       </div>
 
       <h3>شاهين</h3>
@@ -770,9 +701,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- MAP -->
 
 <section id="map">
 
@@ -822,9 +750,6 @@ footer{
 
 </section>
 
-
-<!-- CHALLENGE -->
-
 <section id="challenge">
 
   <div class="section-title">
@@ -870,7 +795,6 @@ footer{
 
   </div>
 
-
   <div class="progress-wrap">
 
     <p style="text-align:center;margin-bottom:10px;">
@@ -887,7 +811,6 @@ footer{
 
 </section>
 
-
 <footer>
 
   <p>
@@ -899,9 +822,6 @@ footer{
   </p>
 
 </footer>
-
-
-<!-- MODAL -->
 
 <div class="modal" id="modal">
 
@@ -917,10 +837,7 @@ footer{
 
 </div>
 
-
 <script>
-
-/* AI STYLE INTRO */
 
 const texts = [
   ["جاري تشغيل الرحلة...", "استعدوا لاكتشاف السر"],
@@ -945,9 +862,6 @@ setInterval(() => {
 
 },3000);
 
-
-/* START */
-
 function startJourney(){
 
   document.getElementById("characters").scrollIntoView({
@@ -957,9 +871,6 @@ function startJourney(){
   createParticles();
 
 }
-
-
-/* CHARACTER INFO */
 
 function characterInfo(name){
 
@@ -972,13 +883,13 @@ function characterInfo(name){
     "أحمد يمثل المسؤولية، ويحب التعلم والمبادرة.",
 
     "مها":
-    "مها غزالة تحب البيئة والرفق، وتلاحظ الأشياء الصغيرة التي تصنع فرقاً.",
+    "مها تمثل البيئة والرفق، وتلاحظ الأشياء الصغيرة التي تصنع فرقاً.",
 
     "فاهم":
     "فاهم روبوت ذكي يحب التفكير المنطقي وحل المشكلات.",
 
     "شاهين":
-    "شاهين صقر حكيم يرمز إلى القيادة والمثابرة."
+    "شاهين صقر يرمز إلى القيادة والمثابرة."
 
   };
 
@@ -990,17 +901,11 @@ function characterInfo(name){
 
 }
 
-
-/* CLOSE */
-
 function closeModal(){
 
   document.getElementById("modal").classList.remove("show");
 
 }
-
-
-/* STATIONS */
 
 function station(number){
 
@@ -1029,9 +934,6 @@ function station(number){
   createParticles();
 
 }
-
-
-/* MATH */
 
 function checkAnswer(){
 
@@ -1065,9 +967,6 @@ function checkAnswer(){
   }
 
 }
-
-
-/* PARTICLES */
 
 function createParticles(){
 
@@ -1104,9 +1003,6 @@ function createParticles(){
   }
 
 }
-
-
-/* ESC CLOSE */
 
 document.addEventListener("keydown",(e)=>{
 
