@@ -1,1209 +1,1130 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>رحلتي مع الرياضيات | طيف عبدالله اليماحي</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:"Tahoma","Arial",sans-serif;
-  background:#f8f5ee;
-  color:#263238;
-  line-height:1.9;
-}
-
-/* =========================
-   شريط التنقل
-========================= */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.97);
-  border-bottom:1px solid #ddd;
-  box-shadow:0 4px 20px rgba(0,0,0,.08);
-}
-
-.navbar{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.logo{
-  font-size:21px;
-  font-weight:bold;
-  color:#075c42;
-}
-
-nav{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-nav a{
-  text-decoration:none;
-  color:#333;
-  padding:8px 13px;
-  border-radius:20px;
-  transition:.3s;
-}
-
-nav a:hover{
-  background:#075c42;
-  color:white;
-}
-
-/* =========================
-   الواجهة الرئيسية
-========================= */
-
-.hero{
-  min-height:650px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:80px 20px;
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,99,65,.96),
-      rgba(0,99,65,.88),
-      rgba(190,145,55,.88)
-    );
-  color:white;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  opacity:.12;
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      white 0,
-      white 2px,
-      transparent 2px,
-      transparent 35px
-    );
-}
-
-.hero-content{
-  position:relative;
-  max-width:850px;
-}
-
-.badge{
-  display:inline-block;
-  background:white;
-  color:#075c42;
-  padding:8px 20px;
-  border-radius:30px;
-  font-weight:bold;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-size:clamp(38px,7vw,75px);
-  margin-bottom:10px;
-}
-
-.hero h2{
-  font-size:25px;
-  font-weight:normal;
-  margin-bottom:20px;
-}
-
-.hero p{
-  font-size:19px;
-  max-width:700px;
-  margin:auto;
-}
-
-.student-card{
-  margin:30px auto 0;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3);
-  padding:18px 25px;
-  border-radius:20px;
-  max-width:500px;
-}
-
-/* =========================
-   الأقسام
-========================= */
-
-section{
-  padding:80px 20px;
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:45px;
-}
-
-.section-title span{
-  color:#b88932;
-  font-weight:bold;
-}
-
-.section-title h2{
-  font-size:35px;
-  color:#075c42;
-  margin-top:5px;
-}
-
-.section-title p{
-  max-width:700px;
-  margin:10px auto;
-  color:#666;
-}
-
-/* =========================
-   البطاقات
-========================= */
-
-.cards{
-  display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-  gap:22px;
-}
-
-.card{
-  background:white;
-  border-radius:22px;
-  padding:28px;
-  box-shadow:0 8px 25px rgba(0,0,0,.07);
-  border:1px solid #eee;
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-7px);
-  box-shadow:0 15px 35px rgba(0,0,0,.12);
-}
-
-.card-icon{
-  font-size:45px;
-  margin-bottom:12px;
-}
-
-.card h3{
-  color:#075c42;
-  margin-bottom:10px;
-}
-
-/* =========================
-   السؤال الأساسي
-========================= */
-
-.question{
-  background:#075c42;
-  color:white;
-  text-align:center;
-  border-radius:30px;
-  padding:55px 30px;
-  box-shadow:0 15px 40px rgba(0,0,0,.15);
-}
-
-.question h2{
-  font-size:32px;
-  margin-bottom:20px;
-}
-
-.question p{
-  max-width:800px;
-  margin:auto;
-  font-size:19px;
-}
-
-/* =========================
-   رحلة المعادلة
-========================= */
-
-.steps{
-  display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-
-.step{
-  background:white;
-  padding:30px 22px;
-  border-radius:20px;
-  border-top:5px solid #075c42;
-  box-shadow:0 7px 20px rgba(0,0,0,.06);
-}
-
-.number{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:#b88932;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:15px;
-}
-
-/* =========================
-   المثال
-========================= */
-
-.example-box{
-  background:white;
-  border-radius:25px;
-  padding:35px;
-  max-width:850px;
-  margin:auto;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.equation{
-  background:#f3eee2;
-  color:#075c42;
-  font-size:32px;
-  font-weight:bold;
-  text-align:center;
-  padding:20px;
-  border-radius:15px;
-  margin:25px 0;
-}
-
-.solution{
-  display:grid;
-  gap:12px;
-}
-
-.solution div{
-  padding:14px;
-  background:#fafafa;
-  border-right:5px solid #b88932;
-  border-radius:10px;
-}
-
-/* =========================
-   شخصيات الميثاق
-========================= */
-
-.characters{
-  background:#eee9dc;
-}
-
-.character{
-  text-align:center;
-  background:white;
-  border-radius:25px;
-  padding:30px 20px;
-  border:2px solid transparent;
-  transition:.3s;
-}
-
-.character:hover{
-  border-color:#b88932;
-  transform:translateY(-6px);
-}
-
-.character-avatar{
-  width:95px;
-  height:95px;
-  margin:auto auto 15px;
-  border-radius:50%;
-  background:#075c42;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:42px;
-}
-
-.character h3{
-  color:#075c42;
-  font-size:24px;
-}
-
-.value{
-  display:inline-block;
-  margin-top:8px;
-  padding:5px 15px;
-  background:#f0e3c5;
-  color:#795b20;
-  border-radius:20px;
-  font-weight:bold;
-}
-
-/* =========================
-   التحدي
-========================= */
-
-.challenge{
-  background:white;
-  padding:35px;
-  border-radius:25px;
-  max-width:800px;
-  margin:auto;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.challenge h3{
-  color:#075c42;
-  font-size:25px;
-}
-
-.challenge button{
-  margin-top:15px;
-  border:0;
-  background:#075c42;
-  color:white;
-  padding:12px 22px;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:16px;
-}
-
-.challenge button:hover{
-  background:#0a7655;
-}
-
-.answer{
-  display:none;
-  margin-top:20px;
-  padding:15px;
-  background:#e7f4ee;
-  border-radius:12px;
-  color:#075c42;
-  font-weight:bold;
-}
-
-/* =========================
-   الخلاصة
-========================= */
-
-.conclusion{
-  background:
-    linear-gradient(135deg,#075c42,#b88932);
-  color:white;
-  text-align:center;
-}
-
-.conclusion h2{
-  font-size:35px;
-  margin-bottom:15px;
-}
-
-.conclusion p{
-  max-width:800px;
-  margin:auto;
-  font-size:18px;
-}
-
-/* =========================
-   الفوتر
-========================= */
-
-footer{
-  background:#17221e;
-  color:white;
-  text-align:center;
-  padding:35px 20px;
-}
-
-footer p{
-  margin:6px 0;
-}
-
-footer strong{
-  color:#e0bd72;
-}
-
-.school-name{
-  margin-top:20px !important;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.2);
-  color:#f0d18b;
-  font-size:20px;
-  font-weight:bold;
-}
-
-/* =========================
-   الجوال
-========================= */
-
-@media(max-width:700px){
-
-  .navbar{
-    flex-direction:column;
-  }
-
-  nav{
-    justify-content:center;
-  }
-
-  .hero{
-    min-height:580px;
-  }
-
-  section{
-    padding:60px 15px;
-  }
-
-  .question h2,
-  .conclusion h2{
-    font-size:27px;
-  }
-
-  .hero h1{
-    font-size:42px;
-  }
-
-  .hero h2{
-    font-size:21px;
-  }
-
-  .equation{
-    font-size:25px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>مهمة الأداء | رحلتي مع الرياضيات</title>
+
+  <style>
+    :root {
+      --pink: #d98aaa;
+      --light-pink: #f9dce8;
+      --lavender: #ddd3f5;
+      --purple: #8065a8;
+      --gold: #c8a15b;
+      --cream: #fff9f3;
+      --white: #ffffff;
+      --dark: #543f55;
+      --soft: #fff0f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Tahoma", "Arial", sans-serif;
+      background:
+        radial-gradient(circle at top right, #f7dce8 0, transparent 28%),
+        radial-gradient(circle at bottom left, #e9e0f8 0, transparent 30%),
+        var(--cream);
+      color: var(--dark);
+      line-height: 1.9;
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 249, 243, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ead6df;
+      padding: 12px 5%;
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--purple);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: var(--light-pink);
+      color: var(--purple);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 6%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "✦";
+      position: absolute;
+      top: 90px;
+      right: 8%;
+      font-size: 55px;
+      color: #e8c6d7;
+    }
+
+    .hero::after {
+      content: "✧";
+      position: absolute;
+      bottom: 80px;
+      left: 10%;
+      font-size: 65px;
+      color: #cfc2e8;
+    }
+
+    .hero-content {
+      max-width: 950px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--light-pink);
+      color: var(--purple);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      border: 1px solid #edc4d4;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 75px);
+      margin: 5px 0;
+      color: var(--purple);
+      line-height: 1.2;
+    }
+
+    .hero h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      color: var(--pink);
+      margin: 15px 0;
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: 20px auto;
+      font-size: 18px;
+    }
+
+    .student-card {
+      margin: 30px auto 0;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #ead7e1;
+      border-radius: 25px;
+      padding: 20px;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(128, 101, 168, 0.08);
+    }
+
+    .student-card strong {
+      color: var(--purple);
+    }
+
+    /* ---------- SECTIONS ---------- */
+
+    section {
+      padding: 80px 6%;
+    }
+
+    .section-container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title span {
+      display: inline-block;
+      color: var(--pink);
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      color: var(--purple);
+      margin: 0;
+    }
+
+    .section-title p {
+      max-width: 700px;
+      margin: 12px auto;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      border-radius: 25px;
+      padding: 28px;
+      border: 1px solid #eadbe2;
+      box-shadow: 0 10px 30px rgba(84,63,85,0.06);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(128,101,168,0.12);
+    }
+
+    .card-icon {
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light-pink);
+      border-radius: 18px;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: var(--purple);
+      margin-top: 0;
+    }
+
+    /* ---------- VIDEO ---------- */
+
+    .video-section {
+      background: linear-gradient(135deg, #fff0f5, #f2ecfa);
+    }
+
+    .video-placeholder {
+      max-width: 900px;
+      min-height: 390px;
+      margin: auto;
+      border: 3px dashed #d5b2c4;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.72);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-placeholder::before {
+      content: "✦";
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 35px;
+      color: #dec8ed;
+    }
+
+    .video-placeholder::after {
+      content: "✧";
+      position: absolute;
+      bottom: 20px;
+      left: 30px;
+      font-size: 40px;
+      color: #e8c3d5;
+    }
+
+    .play-icon {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(217,138,170,0.3);
+    }
+
+    .video-placeholder h3 {
+      color: var(--purple);
+      font-size: 27px;
+      margin: 5px 0;
+    }
+
+    .video-placeholder p {
+      max-width: 600px;
+      margin: 8px auto;
+    }
+
+    .video-note {
+      background: var(--soft);
+      border-radius: 15px;
+      padding: 10px 18px;
+      color: var(--purple);
+      font-size: 14px;
+      margin-top: 15px;
+    }
+
+    /* ---------- EQUATION ---------- */
+
+    .equation-box {
+      background: linear-gradient(135deg, #f9dce8, #ddd3f5);
+      border-radius: 30px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .equation {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: bold;
+      color: var(--purple);
+      direction: ltr;
+      margin: 20px 0;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .step {
+      background: rgba(255,255,255,0.8);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .step-number {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto auto 8px;
+      font-weight: bold;
+    }
+
+    /* ---------- CHARACTERS ---------- */
+
+    .character-card {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .character-icon {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      background: var(--light-pink);
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 58px;
+      border: 4px solid #fff;
+      box-shadow: 0 5px 18px rgba(84,63,85,0.1);
+    }
+
+    .character-card:nth-child(even) .character-icon {
+      background: var(--lavender);
+    }
+
+    .value {
+      display: inline-block;
+      background: #fff2d8;
+      color: #8a6a2f;
+      padding: 5px 13px;
+      border-radius: 15px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* ---------- CHALLENGE ---------- */
+
+    .challenge {
+      background: linear-gradient(135deg, #8065a8, #a987bd);
+      color: white;
+      border-radius: 35px;
+      padding: 45px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(128,101,168,0.2);
+    }
+
+    .challenge h2 {
+      margin-top: 0;
+      font-size: 32px;
+    }
+
+    .challenge-equation {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 32px;
+      direction: ltr;
+      margin: 25px auto;
+      max-width: 500px;
+      font-weight: bold;
+    }
+
+    .answer-btn {
+      border: none;
+      background: white;
+      color: var(--purple);
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .answer-btn:hover {
+      transform: scale(1.05);
+    }
+
+    #answer {
+      display: none;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.15);
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    /* ---------- CONCLUSION ---------- */
+
+    .conclusion {
+      text-align: center;
+      background: #fff;
+    }
+
+    .quote {
+      max-width: 800px;
+      margin: auto;
+      background: var(--soft);
+      border-right: 6px solid var(--pink);
+      border-radius: 20px;
+      padding: 25px;
+      font-size: 20px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: #543f55;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer strong {
+      color: #f5c8da;
+    }
+
+    .uae {
+      font-size: 22px;
+      margin: 8px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 700px) {
+
+      .nav-container {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 3px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 60px;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .challenge {
+        padding: 30px 20px;
+      }
+
+      .video-placeholder {
+        min-height: 320px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-<!-- =========================
-     شريط التنقل
-========================= -->
+  <!-- NAVIGATION -->
 
-<header>
+  <nav>
+    <div class="nav-container">
 
-  <div class="navbar">
+      <div class="logo">
+        ✦ مهمة الأداء
+      </div>
 
-    <div class="logo">
-      📖 رحلتي مع الرياضيات
+      <div class="nav-links">
+        <a href="#home">الرئيسية</a>
+        <a href="#idea">فكرة المشروع</a>
+        <a href="#video">الفيديو</a>
+        <a href="#question">السؤال الأساسي</a>
+        <a href="#journey">رحلة المعادلة</a>
+        <a href="#characters">شخصيات الميثاق</a>
+        <a href="#challenge">التحدي</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        ✨ مهمة الأداء ✨
+      </div>
+
+      <h1>
+        رحلتي مع الرياضيات
+      </h1>
+
+      <h2>
+        معادلات الدرجة الأولى في حياتنا اليومية
+      </h2>
+
+      <p>
+        رحلة أكتشف فيها كيف يمكن للرياضيات أن تساعدني
+        على فهم المواقف اليومية واتخاذ قرارات ذكية.
+      </p>
+
+      <div class="student-card">
+        <div>
+          <strong>الطالبة:</strong>
+          طيف عبدالله اليماحي
+        </div>
+
+        <div>
+          <strong>الصف:</strong>
+          التاسع - 2
+        </div>
+
+        <div class="uae">
+          🇦🇪
+        </div>
+      </div>
+
     </div>
 
-    <nav>
-      <a href="#home">الرئيسية</a>
-      <a href="#idea">فكرة المشروع</a>
-      <a href="#question">السؤال الأساسي</a>
-      <a href="#journey">رحلة المعادلة</a>
-      <a href="#characters">شخصيات الميثاق</a>
-      <a href="#challenge">التحدي</a>
-    </nav>
-
-  </div>
-
-</header>
+  </header>
 
 
-<!-- =========================
-     الرئيسية
-========================= -->
+  <!-- IDEA -->
 
-<section class="hero" id="home">
+  <section id="idea">
 
-  <div class="hero-content">
+    <div class="section-container">
 
-    <div class="badge">
-      🇦🇪 مشروع رياضيات إماراتي
+      <div class="section-title">
+        <span>البداية</span>
+        <h2>فكرة المشروع</h2>
+        <p>
+          الرياضيات ليست مجرد قوانين نحفظها، بل طريقة تساعدنا
+          على التفكير وفهم الأشياء من حولنا.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">📖</div>
+
+          <h3>نتعلم بطريقة إبداعية</h3>
+
+          <p>
+            هني أنا أتكلم عن معادلات الدرجة الأولى، وفكرة الدفتر
+            إننا نتعلم الرياضيات بطريقة إبداعية وممتعة،
+            مو بس نحفظ القوانين.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="card-icon">💡</div>
+
+          <h3>نربطها بحياتنا</h3>
+
+          <p>
+            نقدر نكتب قصة أو موقف من حياتنا اليومية ونستخدم فيه
+            معادلة، وبعدها نكوّن معادلة تمثل الموقف ونحلها
+            خطوة بخطوة.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="card-icon">🎨</div>
+
+          <h3>نوضح الفكرة</h3>
+
+          <p>
+            نقدر بعد نرسم صورة أو مخطط عشان توضح لنا الفكرة
+            ونفهم كيف ترتبط المعادلة بالمشكلة.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <div class="card-icon">🧠</div>
+
+          <h3>نتخذ قراراً مناسباً</h3>
+
+          <p>
+            نكتب كيف المعادلة ساعدتنا نفهم المشكلة وناخذ
+            قرار مناسب، مثل التسوق أو التوفير أو حساب المصاريف.
+          </p>
+        </div>
+
+      </div>
+
     </div>
 
-    <h1>
-      رحلتي مع الرياضيات
-    </h1>
+  </section>
 
-    <h2>
-      معادلات الدرجة الأولى في حياتنا اليومية
-    </h2>
+
+  <!-- VIDEO -->
+
+  <section class="video-section" id="video">
+
+    <div class="section-container">
+
+      <div class="section-title">
+
+        <span>🎬 مهمة الأداء</span>
+
+        <h2>فيديو الموقف</h2>
+
+        <p>
+          هنا بيكون الفيديو الذي يجمع بين شخصيات الميثاق
+          وموقف من الحياة اليومية نستخدم فيه معادلة من الدرجة الأولى.
+        </p>
+
+      </div>
+
+
+      <div class="video-placeholder">
+
+        <div class="play-icon">
+          ▶
+        </div>
+
+        <h3>
+          فيديو مهمة الأداء
+        </h3>
+
+        <p>
+          سيتم إضافة الفيديو هنا
+        </p>
+
+        <div class="video-note">
+          🎥 الفيديو بيعرض موقف واقعي، والشخصيات بتساعد في حل المشكلة باستخدام المعادلة.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUESTION -->
+
+  <section id="question">
+
+    <div class="section-container">
+
+      <div class="section-title">
+
+        <span>السؤال الذي يقود رحلتي</span>
+
+        <h2>السؤال الأساسي</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          كيف تساعدنا معادلات الدرجة الأولى في حل المشكلات
+          واتخاذ قرارات ذكية في حياتنا اليومية في دولة الإمارات؟
+        </h3>
+
+        <p>
+          يعني نستخدم المعادلات عشان نعرف الأشياء اللي نحتاج
+          نحسبها بطريقة أسهل وأدق.
+        </p>
+
+        <p>
+          مثلاً إذا عندي مبلغ معين وأبغي أعرف كم بيوفر لي
+          أو كم بدفع، أقدر أستخدم معادلة وأطلع المجهول.
+        </p>
+
+        <p>
+          فالمعادلات مب بس شي ندرسه في المدرسة، نقدر نستفيد
+          منها في حياتنا اليومية، مثل التسوق، الميزانية،
+          المواصلات، الرحلات وحتى حساب استهلاك الماي والكهرباء.
+        </p>
+
+        <p>
+          وهذا يساعدنا ناخذ قرارات أفضل لأننا نعتمد على
+          الحساب بدل التخمين.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- JOURNEY -->
+
+  <section id="journey">
+
+    <div class="section-container">
+
+      <div class="section-title">
+
+        <span>خطوات التفكير</span>
+
+        <h2>رحلة حل المشكلة</h2>
+
+        <p>
+          من موقف بسيط إلى معادلة تساعدني في الوصول للحل.
+        </p>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">1</div>
+
+          <h3>أفهم المشكلة</h3>
+
+          <p>
+            أحدد المعلومات الموجودة والمجهول الذي أريد معرفته.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">2</div>
+
+          <h3>أكوّن المعادلة</h3>
+
+          <p>
+            أحوّل الموقف اليومي إلى معادلة رياضية.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">3</div>
+
+          <h3>أحل خطوة بخطوة</h3>
+
+          <p>
+            أستخدم العمليات الحسابية للوصول إلى قيمة المجهول.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">4</div>
+
+          <h3>أتخذ القرار</h3>
+
+          <p>
+            أستخدم النتيجة لفهم الموقف واتخاذ قرار مناسب.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- EXAMPLE -->
+
+      <div class="equation-box">
+
+        <h2>مثال بسيط</h2>
+
+        <p>
+          لنفترض أن لدينا المبلغ التالي:
+        </p>
+
+        <div class="equation">
+          3x + 6 = 30
+        </div>
+
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-number">1</div>
+            <strong>نطرح 6</strong>
+            <p>3x = 24</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <strong>نقسم على 3</strong>
+            <p>x = 8</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <strong>نتحقق</strong>
+            <p>3 × 8 + 6 = 30</p>
+          </div>
+
+        </div>
+
+        <p>
+          إذن قيمة المجهول هي <strong>8</strong>.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CHARACTERS -->
+
+  <section id="characters">
+
+    <div class="section-container">
+
+      <div class="section-title">
+
+        <span>شخصيات الميثاق</span>
+
+        <h2>أبطال رحلتي</h2>
+
+        <p>
+          شخصيات تساعدنا على ربط القيم بالتعلم والحياة اليومية.
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card character-card">
+
+          <div class="character-icon">
+            🦌
+          </div>
+
+          <h3>مها</h3>
+
+          <span class="value">
+            الأصالة والرفق
+          </span>
+
+          <p>
+            شخصية تمثل الرفق والأصالة.
+          </p>
+
+        </div>
+
+
+        <div class="card character-card">
+
+          <div class="character-icon">
+            🤖
+          </div>
+
+          <h3>فاهم</h3>
+
+          <span class="value">
+            الابتكار
+          </span>
+
+          <p>
+            يساعدنا على التفكير بطريقة مبتكرة وإيجاد الحلول.
+          </p>
+
+        </div>
+
+
+        <div class="card character-card">
+
+          <div class="character-icon">
+            🦅
+          </div>
+
+          <h3>شاهين</h3>
+
+          <span class="value">
+            الطموح والقيادة
+          </span>
+
+          <p>
+            يمثل الطموح والقيادة والسعي نحو النجاح.
+          </p>
+
+        </div>
+
+
+        <div class="card character-card">
+
+          <div class="character-icon">
+            📚
+          </div>
+
+          <h3>أحمد</h3>
+
+          <span class="value">
+            الانضباط
+          </span>
+
+          <p>
+            يذكرنا بأهمية التنظيم والالتزام.
+          </p>
+
+        </div>
+
+
+        <div class="card character-card">
+
+          <div class="character-icon">
+            👧🏻
+          </div>
+
+          <h3>حصة</h3>
+
+          <span class="value">
+            الانتماء
+          </span>
+
+          <p>
+            تمثل حب الوطن والشعور بالانتماء.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CHALLENGE -->
+
+  <section id="challenge">
+
+    <div class="section-container">
+
+      <div class="challenge">
+
+        <h2>
+          🧩 تحدي صغير
+        </h2>
+
+        <p>
+          تخيلي أن لديكِ 100 درهم.
+          دفعتِ 25 درهماً، ثم اشتريتِ 3 أشياء بسعر x لكل واحد،
+          وبقي معكِ 10 دراهم.
+        </p>
+
+        <div class="challenge-equation">
+          25 + 3x + 10 = 100
+        </div>
+
+        <p>
+          كم يساوي سعر كل شيء؟
+        </p>
+
+        <button class="answer-btn" onclick="showAnswer()">
+          أظهر الحل
+        </button>
+
+        <div id="answer">
+
+          <strong>الحل:</strong>
+
+          <br><br>
+
+          25 + 3x + 10 = 100
+
+          <br>
+
+          3x + 35 = 100
+
+          <br>
+
+          3x = 65
+
+          <br>
+
+          x = 21.67 تقريباً
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONCLUSION -->
+
+  <section class="conclusion">
+
+    <div class="section-container">
+
+      <div class="section-title">
+
+        <span>ما تعلمته</span>
+
+        <h2>الرياضيات حولنا</h2>
+
+      </div>
+
+
+      <div class="quote">
+
+        الرياضيات ليست مجرد أرقام وقوانين،
+        بل أداة تساعدنا على فهم حياتنا
+        واتخاذ قرارات أذكى بطريقة منظمة ودقيقة. 🇦🇪
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
 
     <p>
-      رحلة تعليمية نكتشف فيها كيف تتحول الرياضيات
-      من قوانين ندرسها في المدرسة إلى أداة تساعدنا
-      نفهم حياتنا ونتخذ قرارات أذكى.
+      صُمم هذا المشروع بواسطة
+      <strong>طيف عبدالله اليماحي</strong>
     </p>
-
-    <div class="student-card">
-
-      <strong>
-        الطالبة: طيف عبدالله اليماحي
-      </strong>
-
-      <br>
-
-      الصف التاسع - 2
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     فكرة المشروع
-========================= -->
-
-<section id="idea">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <span>01 — البداية</span>
-
-      <h2>
-        فكرة المشروع
-      </h2>
-
-      <p>
-        الرياضيات مب بس حفظ قوانين،
-        نقدر نستخدمها بطريقة إبداعية وممتعة.
-      </p>
-
-    </div>
-
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="card-icon">
-          📖
-        </div>
-
-        <h3>
-          قصة من الحياة
-        </h3>
-
-        <p>
-          نكتب قصة أو موقف من حياتنا اليومية
-          ونستخدم فيه معادلة تساعدنا نفهم المشكلة ونحلها.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          ✏️
-        </div>
-
-        <h3>
-          نبني المعادلة
-        </h3>
-
-        <p>
-          نحول الموقف إلى معادلة تمثل المعلومات الموجودة
-          ونحدد المجهول اللي نحتاج نعرفه.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          🧩
-        </div>
-
-        <h3>
-          نحل خطوة بخطوة
-        </h3>
-
-        <p>
-          نرتب خطوات الحل ونستخدم العمليات الحسابية
-          للوصول إلى قيمة المجهول.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          💡
-        </div>
-
-        <h3>
-          نتخذ قرارًا
-        </h3>
-
-        <p>
-          بعد ما نعرف الإجابة، نستخدمها عشان نفهم
-          الموقف ونأخذ قرارًا مناسبًا بدل التخمين.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     السؤال الأساسي
-========================= -->
-
-<section id="question">
-
-  <div class="container">
-
-    <div class="question">
-
-      <h2>
-        ❓ السؤال الأساسي
-      </h2>
-
-      <p>
-        كيف تساعدنا معادلات الدرجة الأولى في حل المشكلات
-        واتخاذ قرارات ذكية في حياتنا اليومية في دولة الإمارات؟
-      </p>
-
-      <br>
-
-      <p>
-        نستخدم المعادلات عشان نحسب الأشياء بطريقة أسهل وأدق،
-        مثل التسوق، الميزانية، المواصلات، الرحلات،
-        وحتى حساب استهلاك الماي والكهرباء.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     رحلة المعادلة
-========================= -->
-
-<section id="journey">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <span>02 — الرحلة</span>
-
-      <h2>
-        رحلة حل المشكلة
-      </h2>
-
-      <p>
-        من موقف بسيط إلى قرار ذكي.
-      </p>
-
-    </div>
-
-
-    <div class="steps">
-
-      <div class="step">
-
-        <div class="number">
-          1
-        </div>
-
-        <h3>
-          نفهم الموقف
-        </h3>
-
-        <p>
-          نقرأ المشكلة ونحدد المعلومات الموجودة
-          والمعلومة المجهولة.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="number">
-          2
-        </div>
-
-        <h3>
-          نختار المجهول
-        </h3>
-
-        <p>
-          نرمز للقيمة المجهولة بالحرف x.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="number">
-          3
-        </div>
-
-        <h3>
-          نكوّن المعادلة
-        </h3>
-
-        <p>
-          نحول المعلومات إلى معادلة رياضية.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="number">
-          4
-        </div>
-
-        <h3>
-          نحل ونتحقق
-        </h3>
-
-        <p>
-          نوجد قيمة x ثم نتأكد أن الإجابة منطقية.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     مثال من الحياة
-========================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <span>03 — تطبيق</span>
-
-      <h2>
-        مثال من الحياة اليومية
-      </h2>
-
-      <p>
-        التسوق باستخدام معادلة من الدرجة الأولى.
-      </p>
-
-    </div>
-
-
-    <div class="example-box">
-
-      <h3>
-        🛍️ موقف
-      </h3>
-
-      <br>
-
-      <p>
-        عندي مبلغ
-        <strong>30 درهمًا</strong>.
-        اشتريت غرضًا سعره
-        <strong>6 دراهم</strong>،
-        وباقي المبلغ يساوي سعر ثلاثة أغراض متساوية.
-        كم سعر الغرض الواحد؟
-      </p>
-
-
-      <div class="equation">
-        3x + 6 = 30
-      </div>
-
-
-      <div class="solution">
-
-        <div>
-          الخطوة 1:
-          نطرح 6 من الطرفين
-          → 3x = 24
-        </div>
-
-        <div>
-          الخطوة 2:
-          نقسم الطرفين على 3
-          → x = 8
-        </div>
-
-        <div>
-          النتيجة:
-          سعر الغرض الواحد =
-          <strong>8 دراهم</strong>
-        </div>
-
-        <div>
-          💡 القرار الذكي:
-          أصبحت أعرف السعر الحقيقي للغرض
-          بدل ما أخمن.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     شخصيات الميثاق
-========================= -->
-
-<section class="characters" id="characters">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <span>04 — قيمنا</span>
-
-      <h2>
-        شخصيات الميثاق
-      </h2>
-
-      <p>
-        شخصيات ترافقنا في رحلتنا وتذكرنا بالقيم
-        التي نحتاجها أثناء التعلم والحياة.
-      </p>
-
-    </div>
-
-
-    <div class="cards">
-
-
-      <!-- حصة -->
-
-      <div class="character">
-
-        <div class="character-avatar">
-          💗
-        </div>
-
-        <h3>
-          حصة
-        </h3>
-
-        <span class="value">
-          الانتماء
-        </span>
-
-        <p>
-          تذكرنا أن نعتز بوطننا ونحافظ
-          على هويتنا وقيمنا.
-        </p>
-
-      </div>
-
-
-      <!-- أحمد -->
-
-      <div class="character">
-
-        <div class="character-avatar">
-          📚
-        </div>
-
-        <h3>
-          أحمد
-        </h3>
-
-        <span class="value">
-          الانضباط
-        </span>
-
-        <p>
-          يساعدنا على الالتزام وتنظيم خطواتنا
-          للوصول إلى أهدافنا.
-        </p>
-
-      </div>
-
-
-      <!-- فاهم -->
-
-      <div class="character">
-
-        <div class="character-avatar">
-          💡
-        </div>
-
-        <h3>
-          فاهم
-        </h3>
-
-        <span class="value">
-          الابتكار
-        </span>
-
-        <p>
-          يشجعنا على التفكير بطريقة جديدة
-          وإيجاد حلول مبتكرة.
-        </p>
-
-      </div>
-
-
-      <!-- شاهين -->
-
-      <div class="character">
-
-        <div class="character-avatar">
-          🦅
-        </div>
-
-        <h3>
-          شاهين
-        </h3>
-
-        <span class="value">
-          الطموح والقيادة
-        </span>
-
-        <p>
-          يذكرنا أن نضع أهدافًا واضحة
-          ونسعى لتحقيقها.
-        </p>
-
-      </div>
-
-
-      <!-- مها -->
-
-      <div class="character">
-
-        <div class="character-avatar">
-          🌿
-        </div>
-
-        <h3>
-          مها
-        </h3>
-
-        <span class="value">
-          الأصالة والرفق
-        </span>
-
-        <p>
-          تذكرنا بأهمية الأصالة والتعامل
-          بلطف واحترام مع الآخرين.
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     التحدي
-========================= -->
-
-<section id="challenge">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <span>05 — جرّبي</span>
-
-      <h2>
-        تحدي المعادلة
-      </h2>
-
-      <p>
-        هل تقدرين تحلين المشكلة؟
-      </p>
-
-    </div>
-
-
-    <div class="challenge">
-
-      <h3>
-        🧠 التحدي الأول
-      </h3>
-
-      <br>
-
-      <p>
-        مع طيف مبلغ
-        <strong>100 درهم</strong>.
-        دفعت
-        <strong>25 درهمًا</strong>،
-        ثم اشترت 3 أشياء بالسعر نفسه.
-        إذا بقي معها
-        <strong>10 دراهم</strong>،
-        فما سعر كل شيء؟
-      </p>
-
-
-      <div class="equation">
-        25 + 3x + 10 = 100
-      </div>
-
-
-      <button onclick="showAnswer()">
-        إظهار الحل
-      </button>
-
-
-      <div class="answer" id="answer">
-
-        25 + 3x + 10 = 100
-
-        <br>
-
-        3x + 35 = 100
-
-        <br>
-
-        3x = 65
-
-        <br>
-
-        <strong>
-          x = 21.67 درهم تقريبًا
-        </strong>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     الخلاصة
-========================= -->
-
-<section class="conclusion">
-
-  <div class="container">
-
-    <h2>
-      🌟 ماذا تعلمت؟
-    </h2>
 
     <p>
-      تعلمت أن معادلات الدرجة الأولى ليست مجرد قوانين
-      في كتاب الرياضيات، بل طريقة تساعدني على فهم
-      المشكلات اليومية وتحليلها والوصول إلى قرارات أكثر دقة.
+      الصف التاسع - 2 🇦🇪
     </p>
-
-    <br>
 
     <p>
-      ومن خلال الرياضيات أقدر أستخدم التفكير المنطقي
-      في التسوق، الميزانية، المواصلات، الرحلات
-      واستهلاك الموارد.
+      مهمة الأداء • معادلات الدرجة الأولى
     </p>
 
-  </div>
+    <p>
+      🏫 مدرسة مضب الحلقة الثالثة بنات
+    </p>
 
-</section>
-
-
-<!-- =========================
-     نهاية الموقع
-========================= -->
-
-<footer>
-
-  <p>
-    صُمم هذا المشروع بواسطة
-    <strong>
-      طيف عبدالله اليماحي
-    </strong>
-  </p>
-
-  <p>
-    الصف التاسع - 2 🇦🇪
-  </p>
-
-  <p>
-    رحلتي مع الرياضيات • معادلات الدرجة الأولى
-  </p>
-
-  <p class="school-name">
-    🏫 مدرسة مضب الحلقة الثالثة بنات
-  </p>
-
-</footer>
+  </footer>
 
 
-<!-- =========================
-     التفاعل
-========================= -->
+  <script>
 
-<script>
+    function showAnswer() {
 
-function showAnswer(){
+      const answer = document.getElementById("answer");
 
-  const answer =
-    document.getElementById("answer");
+      if (answer.style.display === "block") {
 
-  if(answer.style.display === "block"){
+        answer.style.display = "none";
 
-    answer.style.display = "none";
+      } else {
 
-  }else{
+        answer.style.display = "block";
 
-    answer.style.display = "block";
+      }
 
-  }
+    }
 
-}
-
-</script>
+  </script>
 
 </body>
 </html>
