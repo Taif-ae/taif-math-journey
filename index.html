@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -82,8 +81,6 @@
       color: var(--purple);
     }
 
-    /* الرئيسية */
-
     .hero {
       min-height: 88vh;
       display: flex;
@@ -161,8 +158,6 @@
       color: var(--purple);
     }
 
-    /* الأقسام */
-
     section {
       padding: 80px 6%;
     }
@@ -194,8 +189,6 @@
       max-width: 700px;
       margin: 12px auto;
     }
-
-    /* البطاقات */
 
     .cards {
       display: grid;
@@ -234,27 +227,28 @@
       margin-top: 0;
     }
 
-    /* الفيديو */
-
     .video-section {
       background: linear-gradient(135deg, #fff0f5, #f2ecfa);
     }
 
     .video-placeholder {
       max-width: 900px;
-      min-height: 390px;
       margin: auto;
       border: 3px dashed #d5b2c4;
       border-radius: 30px;
       background: rgba(255,255,255,0.72);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 35px;
+      padding: 25px;
       position: relative;
       overflow: hidden;
+    }
+
+    .video-placeholder video {
+      display: block;
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+      border-radius: 20px;
     }
 
     .video-placeholder::before {
@@ -275,31 +269,6 @@
       color: #e8c3d5;
     }
 
-    .play-icon {
-      width: 85px;
-      height: 85px;
-      border-radius: 50%;
-      background: var(--pink);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(217,138,170,0.3);
-    }
-
-    .video-placeholder h3 {
-      color: var(--purple);
-      font-size: 27px;
-      margin: 5px 0;
-    }
-
-    .video-placeholder p {
-      max-width: 600px;
-      margin: 8px auto;
-    }
-
     .video-note {
       background: var(--soft);
       border-radius: 15px;
@@ -308,8 +277,6 @@
       font-size: 14px;
       margin-top: 15px;
     }
-
-    /* المعادلة */
 
     .equation-box {
       background: linear-gradient(135deg, #f9dce8, #ddd3f5);
@@ -353,8 +320,6 @@
       font-weight: bold;
     }
 
-    /* شخصيات الميثاق */
-
     .character-card {
       text-align: center;
       position: relative;
@@ -388,8 +353,6 @@
       font-size: 13px;
       font-weight: bold;
     }
-
-    /* التحدي */
 
     .challenge {
       background: linear-gradient(135deg, #8065a8, #a987bd);
@@ -440,8 +403,6 @@
       border-radius: 18px;
     }
 
-    /* الخلاصة */
-
     .conclusion {
       text-align: center;
       background: #fff;
@@ -457,8 +418,6 @@
       font-size: 20px;
     }
 
-    /* النهاية */
-
     footer {
       background: #543f55;
       color: white;
@@ -469,8 +428,6 @@
     footer strong {
       color: #f5c8da;
     }
-
-    /* الجوال */
 
     @media (max-width: 700px) {
 
@@ -499,17 +456,11 @@
       .challenge {
         padding: 30px 20px;
       }
-
-      .video-placeholder {
-        min-height: 320px;
-      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- القائمة -->
 
   <nav>
 
@@ -534,9 +485,6 @@
     </div>
 
   </nav>
-
-
-  <!-- الرئيسية -->
 
   <header class="hero" id="home">
 
@@ -577,9 +525,6 @@
 
   </header>
 
-
-  <!-- فكرة المشروع -->
-
   <section id="idea">
 
     <div class="section-container">
@@ -593,7 +538,6 @@
         </h2>
 
       </div>
-
 
       <div class="cards">
 
@@ -613,7 +557,6 @@
 
         </div>
 
-
         <div class="card">
 
           <div class="card-icon">
@@ -630,7 +573,6 @@
 
         </div>
 
-
         <div class="card">
 
           <div class="card-icon">
@@ -646,7 +588,6 @@
           </p>
 
         </div>
-
 
         <div class="card">
 
@@ -670,9 +611,6 @@
 
   </section>
 
-
-  <!-- الفيديو -->
-
   <section class="video-section" id="video">
 
     <div class="section-container">
@@ -692,23 +630,15 @@
 
       </div>
 
-
       <div class="video-placeholder">
 
-        <div class="play-icon">
-          ▶
-        </div>
-
-        <h3>
-          فيديو مهمة الأداء
-        </h3>
-
-        <p>
-          سيتم إضافة الفيديو هنا
-        </p>
+        <video controls>
+          <source src="video.mp4.mp4" type="video/mp4">
+          المتصفح لا يدعم تشغيل الفيديو.
+        </video>
 
         <div class="video-note">
-          الفيديو بيعرض موقف واقعي، والشخصيات بتساعد في حل المشكلة باستخدام المعادلة.
+          فيديو مهمة الأداء
         </div>
 
       </div>
@@ -716,9 +646,6 @@
     </div>
 
   </section>
-
-
-  <!-- السؤال الأساسي -->
 
   <section id="question">
 
@@ -736,7 +663,6 @@
         </h2>
 
       </div>
-
 
       <div class="card">
 
@@ -758,9 +684,6 @@
 
   </section>
 
-
-  <!-- رحلة المعادلة -->
-
   <section id="journey">
 
     <div class="section-container">
@@ -781,7 +704,6 @@
 
       </div>
 
-
       <div class="steps">
 
         <div class="step">
@@ -800,7 +722,6 @@
 
         </div>
 
-
         <div class="step">
 
           <div class="step-number">
@@ -817,7 +738,6 @@
 
         </div>
 
-
         <div class="step">
 
           <div class="step-number">
@@ -833,7 +753,6 @@
           </p>
 
         </div>
-
 
         <div class="step">
 
@@ -853,9 +772,6 @@
 
       </div>
 
-
-      <!-- المثال -->
-
       <div class="equation-box">
 
         <h2>
@@ -869,7 +785,6 @@
         <div class="equation">
           3x + 6 = 30
         </div>
-
 
         <div class="steps">
 
@@ -889,7 +804,6 @@
 
           </div>
 
-
           <div class="step">
 
             <div class="step-number">
@@ -905,7 +819,6 @@
             </p>
 
           </div>
-
 
           <div class="step">
 
@@ -925,7 +838,6 @@
 
         </div>
 
-
         <p>
           إذن قيمة المجهول هي
           <strong>8</strong>.
@@ -936,9 +848,6 @@
     </div>
 
   </section>
-
-
-  <!-- شخصيات الميثاق -->
 
   <section id="characters">
 
@@ -960,9 +869,7 @@
 
       </div>
 
-
       <div class="cards">
-
 
         <div class="card character-card">
 
@@ -984,7 +891,6 @@
 
         </div>
 
-
         <div class="card character-card">
 
           <div class="character-icon">
@@ -1004,7 +910,6 @@
           </p>
 
         </div>
-
 
         <div class="card character-card">
 
@@ -1026,7 +931,6 @@
 
         </div>
 
-
         <div class="card character-card">
 
           <div class="character-icon">
@@ -1046,7 +950,6 @@
           </p>
 
         </div>
-
 
         <div class="card character-card">
 
@@ -1073,9 +976,6 @@
     </div>
 
   </section>
-
-
-  <!-- التحدي -->
 
   <section id="challenge">
 
@@ -1135,9 +1035,6 @@
 
   </section>
 
-
-  <!-- الخلاصة -->
-
   <section class="conclusion">
 
     <div class="section-container">
@@ -1154,7 +1051,6 @@
 
       </div>
 
-
       <div class="quote">
 
         معادلات الدرجة الأولى تساعدنا على فهم المشكلات اليومية
@@ -1166,9 +1062,6 @@
     </div>
 
   </section>
-
-
-  <!-- النهاية -->
 
   <footer>
 
@@ -1193,7 +1086,6 @@
 
   </footer>
 
-
   <script>
 
     function showAnswer() {
@@ -1212,4 +1104,3 @@
 
 </body>
 </html>
-```
